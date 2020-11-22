@@ -9,6 +9,16 @@ use DateTime::Format::ISO8601;
 
 # a test hook in Perl for taskwarrior
 
+
+# ALGORITHM
+
+# Parse the due attribute from TW
+# Convert it into Remind format
+# Log into remote server
+# Check for presece or remind file
+# If it is there, back it up
+# Append the Remind formatted line to the original remind file
+
 my @short_months = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
 my @days_of_week = qw(Sunday Monday Tuesday Wednesday Thursday Friday Saturday);
 
