@@ -42,7 +42,7 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     # Log into remote server
     
     my $host = $ENV{"TW_HOOK_REMIND_REMOTE_HOST"} or die "Cannot get TW_HOOK_REMIND_REMOTE_HOST environment variable";
-    my $user = "lemon";
+    my $user = $ENV{"TW_HOOK_REMIND_REMOTE_USER"} or die "Cannot get TW_HOOK_REMIND_REMOTE_USER environment variable";
 
     my $ssh = Net::OpenSSH->new($host, user => $user);
     $ssh->error and die "Couldn't establish SSH connection: " . $ssh->error;
@@ -54,13 +54,13 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     $ssh->system("cp $work_rem_file $work_rem_file.bak"); 
 
     # Append the Remind formatted line to the original remind file
-    $ssh->system({stdin_data => $remind_line}, "cat >> ~/.reminders/work.rem") or die "Cannot append text: " . $ssh->error;
-    
-    # Reset the back up
-    # $ssh->system("mv $work_rem_file.bak $work_rem_file"); 
-    # $decoded_task->{"Description"} = "Cocks";
+    $ssh->system({stdin_data => $remind_line}, "cat >> $work_rem_file") or die "Cannot append text: " . $ssh->error;
 
-    print "Trumpets\n";
+    # Get content of remind file
+    my @out_file = $ssh->capture("cat $work_rem_file");
+
+
+    print "Contents of $work_rem_file on $host is now:\n", @out_file;
     print encode_json $decoded_task;
     exit 0;
 } else {
