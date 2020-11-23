@@ -60,7 +60,10 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     my @out_file = $ssh->capture("cat $work_rem_file");
 
 
-    print "Contents of $work_rem_file on $host is now:\n", @out_file;
+    print qq/
+Contents of $work_rem_file on $host is now:\n/,
+    @out_file;
+
     print encode_json $decoded_task;
     exit 0;
 } else {
