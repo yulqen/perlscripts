@@ -1,3 +1,5 @@
+#!/bin/env perl
+
 use warnings;
 use strict;
 use feature qw(say);
@@ -49,18 +51,21 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     if ($ssh->test("ls $work_rem_file") != 1) { die "Cannot find $work_rem_file on $host."};
 
     # If it is there, back it up
-    $ssh->system("mv $work_rem_file $work_rem_file.bak"); 
+    $ssh->system("cp $work_rem_file $work_rem_file.bak"); 
 
     # Append the Remind formatted line to the original remind file
     $ssh->system({stdin_data => $remind_line}, "cat >> ~/.reminders/work.rem") or die "Cannot append text: " . $ssh->error;
     
     # Reset the back up
-    $ssh->system("mv $work_rem_file.bak $work_rem_file"); 
+    # $ssh->system("mv $work_rem_file.bak $work_rem_file"); 
+    # $decoded_task->{"Description"} = "Cocks";
 
+    print "Trumpets\n";
     print encode_json $decoded_task;
-
+    exit 0;
 } else {
    print encode_json $decoded_task; 
+   exit 0;
 }
 
 
