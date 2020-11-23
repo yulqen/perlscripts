@@ -34,13 +34,24 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     my $time = $scheduled_dt->hms();
     # Convert it into Remind format
     my $remind_line = "REM $date $month $year AT $time $original_description";
-    print $remind_line;
+    
+    # Log into remote server
+    
+    my $host = "192.168.122.184";
+    my $user = "lemon";
+
+    my $ssh = Net::OpenSSH->new($host, user => $user);
+    $ssh->error and die "Couldn't establish SSH connection: " . $ssh->error;
+
+    $ssh->system({stdin_data => $remind_line}, "cat >> ~/.reminders/work.rem") or die "Cannot append text: " . $ssh->error;
+
+    print $decoded_task;
+
 } else {
    print encode_json $decoded_task; 
 }
 
 
-# Log into remote server
 # Check for presece or remind file
 # If it is there, back it up
 # Append the Remind formatted line to the original remind file
