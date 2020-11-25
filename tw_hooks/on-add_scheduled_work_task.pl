@@ -91,6 +91,7 @@ Contents of $work_rem_file on $host is now:\n/,
 
     # TODO - we need to strip away the %:MIN syntax from the original
     # description - need to substitute it here!
+    $decoded_task->{description} = $original_description;
     print encode_json $decoded_task;
     exit 0;
 } else {
