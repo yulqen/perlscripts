@@ -22,8 +22,8 @@ sub parse_scheduled
 # Parse the scheduled attribute from TW
 
 my %token_regexes = (
-    tdelta => qr/%:d(\d+)/, # %dINT
-    trepeat => qr/%:r(\d+)/, # %rINT
+    tdelta => qr/\+(\d+)/, # +INT (see remind man page)
+    trepeat => qr/\*(\d+)/, # *INT (see remind man page)
 );
 
 
@@ -42,6 +42,7 @@ if (($original_description =~ m/$token_regexes{tdelta}/g)) {
 };
 
 if (($original_description =~ m/$token_regexes{trepeat}/g)) {
+    if ($tdelta eq "") { die "Cannot have a repeat token without a delta token" };
     $trepeat = "*$1";
     $original_description =~ s/$token_regexes{trepeat}//g; # remove the delta time token
 } else {
