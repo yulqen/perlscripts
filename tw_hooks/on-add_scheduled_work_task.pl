@@ -21,16 +21,33 @@ sub parse_scheduled
 # ALGORITHM
 # Parse the scheduled attribute from TW
 
+my %token_regexes = (
+    tdelta => qr/%:d(\d+)/, # %dINT
+    trepeat => qr/%:r(\d+)/, # %rINT
+);
+
+
+
 my $added_task = <STDIN>;
 my $work_rem_file = '~/.reminders/work.rem';
 my $decoded_task = decode_json $added_task;
 my $original_description = ${$decoded_task}{description};
-my $lead_time;
-my $lead_regex = qr/%\:(\d+)/;
-if (($original_description =~ m/$lead_regex/g)) {
-    $lead_time = $1;
-    $original_description =~ s/$lead_regex//g;
+my $tdelta;
+my $trepeat;
+if (($original_description =~ m/$token_regexes{tdelta}/g)) {
+    $tdelta = "+$1";
+    $original_description =~ s/$token_regexes{tdelta}//g; # remove the delta time token
+} else {
+    $tdelta = "";
 };
+
+if (($original_description =~ m/$token_regexes{trepeat}/g)) {
+    $trepeat = "*$1";
+    $original_description =~ s/$token_regexes{trepeat}//g; # remove the delta time token
+} else {
+    $trepeat = "";
+};
+
 my $tags = ${$decoded_task}{tags}; # alternative - not using -> in the ref
 my $scheduled_dt;
 
@@ -43,7 +60,8 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     my $min = $scheduled_dt->minute();
     my $time = $scheduled_dt->hms();
     # Convert it into Remind format
-    my $remind_line = "REM $date $month $year AT $time +$lead_time MSG $original_description\%b\n";
+    my $remind_line = "REM $date $month $year AT $time $tdelta $trepeat MSG $original_description \%b\n";
+    $remind_line =~ s/ +/ /g;
     
     # Log into remote server
     
