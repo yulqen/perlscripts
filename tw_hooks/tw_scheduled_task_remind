@@ -1,0 +1,17 @@
+.\" Manpage for tw_scheduled_remind
+.\" Contact y@yulqen.org to correct errors or typos.
+.TH man 7 "24 November 2020" "1.0" "tw_scheduled_remind man page"
+.SH NAME
+tw_scheduled_remind \- create Remind event upon adding new Taskwarrior task with schedule set
+.SH SYNOPSIS
+task add "Task name [%:10]" schedule:2020-10-10 +dft
+.SH DESCRIPTION
+tw_scheduled_remind is a hook for Taskwarrior written in Perl. It's sets a new Remind event for the task, given a suitable "schedule" attribute.
+.SH OPTIONS
+None.
+.SH SEE ALSO
+task(5), taskrc(5)
+.SH BUGS
+Plenty of them.
+.SH AUTHOR
+Matthew Lemon (y@yulqen.org)

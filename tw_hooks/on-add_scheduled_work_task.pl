@@ -25,6 +25,12 @@ my $added_task = <STDIN>;
 my $work_rem_file = '~/.reminders/work.rem';
 my $decoded_task = decode_json $added_task;
 my $original_description = ${$decoded_task}{description};
+my $lead_time;
+my $lead_regex = qr/%\:(\d+)/;
+if (($original_description =~ m/$lead_regex/g)) {
+    $lead_time = $1;
+    $original_description =~ s/$lead_regex//g;
+};
 my $tags = ${$decoded_task}{tags}; # alternative - not using -> in the ref
 my $scheduled_dt;
 
@@ -37,7 +43,7 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     my $min = $scheduled_dt->minute();
     my $time = $scheduled_dt->hms();
     # Convert it into Remind format
-    my $remind_line = "REM $date $month $year AT $time MSG $original_description \%b\n";
+    my $remind_line = "REM $date $month $year AT $time +$lead_time MSG $original_description\%b\n";
     
     # Log into remote server
     
@@ -64,6 +70,8 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
 Contents of $work_rem_file on $host is now:\n/,
     @out_file;
 
+    # TODO - we need to strip away the %:MIN syntax from the original
+    # description - need to substitute it here!
     print encode_json $decoded_task;
     exit 0;
 } else {
