@@ -34,6 +34,7 @@ my $decoded_task = decode_json $added_task;
 my $original_description = ${$decoded_task}{description};
 my $tdelta;
 my $trepeat;
+
 if (($original_description =~ m/$token_regexes{tdelta}/g)) {
     $tdelta = "+$1";
     $original_description =~ s/$token_regexes{tdelta}//g; # remove the delta time token
