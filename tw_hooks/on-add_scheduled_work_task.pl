@@ -71,7 +71,7 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     my $user = $ENV{"TW_HOOK_REMIND_REMOTE_USER"} or die "Cannot get TW_HOOK_REMIND_REMOTE_USER environment variable";
     
     # use correct port
-    if ($host eq "16693433.xyz") { $port = 2222 };
+    if ($host =~ m/.*\.xyz$/) { $port = 2222 };
 
     say "Trying to establish connection at $host:$port ...";
     my $ssh = Net::OpenSSH->new($host, user => $user, port => $port);
