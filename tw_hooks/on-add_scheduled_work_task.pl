@@ -105,7 +105,6 @@ Contents of $work_rem_file on $host is now:\n/,
    exit 0;
 }
 
-
 =pod
 
 =head1 NAME
@@ -146,9 +145,11 @@ Here is a full example, which includes a remind C<tdelta> and C<trepeat>:
 
 =item
 
-C<task add Meaningless meeting +10 *1 +dft scheduled:2021-10-09T1000>
+C<task add Meaningless meeting +10 *1 +dft scheduled:2021-10-09T10:00Z>
 
 =back
+
+The C<Z> is optional, but the time specified is in Zulu time, so take that into account. When in BST it will take an hour off.
 
 Although this is a meaningless meeting, it is important enough to be reminded of it 10 minutes before 10am (C<+10>), with a repeat 
 every minute (C<*1>) between the initial reminder and the time of the meeting itself.
