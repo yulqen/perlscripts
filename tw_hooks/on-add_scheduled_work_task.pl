@@ -61,12 +61,12 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     my $hr = $scheduled_dt->hour();
     my $min = $scheduled_dt->minute();
     my $time = substr $scheduled_dt->hms(), 0, 5; # we do not want seconds in the time format
-    # Convert it into Remind format
+    # Convert it into Remind format with %" bits that mean you don't get the
+    # shit in wyrd
     my $remind_line = "REM $date $month $year AT $time $tdelta $trepeat MSG \%\"$original_description\%\" \%b\n";
     $remind_line =~ s/ +/ /g;
     
     # Log into remote server
-    
     my $host = $ENV{"TW_HOOK_REMIND_REMOTE_HOST"} or die "Cannot get TW_HOOK_REMIND_REMOTE_HOST environment variable";
     my $user = $ENV{"TW_HOOK_REMIND_REMOTE_USER"} or die "Cannot get TW_HOOK_REMIND_REMOTE_USER environment variable";
     
@@ -81,7 +81,7 @@ if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
     if ($ssh->test("ls $work_rem_file") != 1) { die "Cannot find $work_rem_file on $host."};
 
     # If it is there, back it up
-    $ssh->system("cp $work_rem_file $work_rem_file.bak"); 
+    $ssh->system("cp $work_rem_file $work_rem_file.bak") or die "Cannot create a back-up of remind file."; 
 
     # Append the Remind formatted line to the original remind file
     $ssh->system({stdin_data => $remind_line}, "cat >> $work_rem_file") or die "Cannot append text: " . $ssh->error;
