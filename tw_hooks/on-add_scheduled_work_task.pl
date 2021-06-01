@@ -11,98 +11,134 @@ use Net::OpenSSH;
 my @short_months = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
 
 # subs
-sub parse_scheduled
-{
+sub parse_scheduled {
     my $sched_date = shift;
     return DateTime::Format::ISO8601->parse_datetime($sched_date);
 }
- 
+
 # ALGORITHM
 # Parse the scheduled attribute from TW
 
 my %token_regexes = (
-    tdelta => qr/\+(\d+)/, # +INT (see remind man page)
-    trepeat => qr/\*(\d+)/, # *INT (see remind man page)
+    tdelta  => qr/\+(\d+)/,    # +INT (see remind man page)
+    trepeat => qr/\*(\d+)/,    # *INT (see remind man page)
+    delta   => qr/D\+(\d+)/,
+    repeat  => qr/D\*(\d+)/,
 );
 
-
-
-my $added_task = <STDIN>;
-my $work_rem_file = '~/.reminders/work.rem';
-my $decoded_task = decode_json $added_task;
+my $added_task           = <STDIN>;
+my $work_rem_file        = '~/.reminders/work.rem';
+my $decoded_task         = decode_json $added_task;
 my $original_description = ${$decoded_task}{description};
 my $tdelta;
 my $trepeat;
+my $delta;
+my $repeat;
 
-if (($original_description =~ m/$token_regexes{tdelta}/g)) {
-    $tdelta = "+$1"; # corresponds to tdelta in remind: how many minutes prior to reminder it reminds
-    $original_description =~ s/$token_regexes{tdelta}//g; # remove the delta time token
-} else {
+if ( ( $original_description =~ m/$token_regexes{delta}/g ) ) {
+    $delta = "+$1";
+    $original_description =~
+      s/$token_regexes{delta}//g;    # remove the delta token
+}
+else {
+    $delta = "";
+}
+
+if ( ( $original_description =~ m/$token_regexes{repeat}/g ) ) {
+    $repeat = "*$1";
+    $original_description =~
+      s/$token_regexes{repeat}//g;    # remove the repeat token
+}
+else {
+    $repeat = "";
+}
+
+if ( ( $original_description =~ m/$token_regexes{tdelta}/g ) ) {
+    $tdelta = "+$1"
+      ; # corresponds to tdelta in remind: how many minutes prior to reminder it reminds
+    $original_description =~
+      s/$token_regexes{tdelta}//g;    # remove the delta time token
+}
+else {
     $tdelta = "";
-};
+}
 
-if (($original_description =~ m/$token_regexes{trepeat}/g)) {
-    if ($tdelta eq "") { die "Cannot have a repeat token without a delta token" };
-    $trepeat = "*$1"; # corresponds to trepeat in remind: how many minutes within tdelta it pings repeatedly
-    $original_description =~ s/$token_regexes{trepeat}//g; # remove the delta time token
-} else {
+if ( ( $original_description =~ m/$token_regexes{trepeat}/g ) ) {
+    if ( $tdelta eq "" ) {
+        die "Cannot have a repeat token without a delta token";
+    }
+    $trepeat = "*$1"
+      ; # corresponds to trepeat in remind: how many minutes within tdelta it pings repeatedly
+    $original_description =~
+      s/$token_regexes{trepeat}//g;    # remove the delta time token
+}
+else {
     $trepeat = "";
-};
+}
 
-my $tags = ${$decoded_task}{tags}; # alternative - not using -> in the ref
+my $tags = ${$decoded_task}{tags};     # alternative - not using -> in the ref
 my $scheduled_dt;
 
-if ($decoded_task->{scheduled} and (scalar grep {$_ eq "dft" } @{$tags})) {
+if ( $decoded_task->{scheduled} and ( scalar grep { $_ eq "dft" } @{$tags} ) ) {
     $scheduled_dt = parse_scheduled $decoded_task->{scheduled};
-    my $port = 22;
-    my $date = $scheduled_dt->day();
-    my $month = $short_months[$scheduled_dt->month()-1];
-    my $year = $scheduled_dt->year();
-    my $hr = $scheduled_dt->hour();
-    my $min = $scheduled_dt->minute();
-    my $time = substr $scheduled_dt->hms(), 0, 5; # we do not want seconds in the time format
-    # Convert it into Remind format with %" bits that mean you don't get the
-    # shit in wyrd
-    my $remind_line = "REM $date $month $year AT $time $tdelta $trepeat MSG \%\"$original_description\%\" \%b\n";
+    my $port  = 22;
+    my $date  = $scheduled_dt->day();
+    my $month = $short_months[ $scheduled_dt->month() - 1 ];
+    my $year  = $scheduled_dt->year();
+    my $hr    = $scheduled_dt->hour();
+    my $min   = $scheduled_dt->minute();
+    my $time  = substr $scheduled_dt->hms(), 0,
+      5;    # we do not want seconds in the time format
+        # Convert it into Remind format with %" bits that mean you don't get the
+        # shit in wyrd
+
+    $original_description =~ s/\s+$//;    # trim white space from end of string
+    my $remind_line =
+"REM $date $month $year $delta $repeat AT $time $tdelta $trepeat MSG \%\"$original_description\%\" \%b\n";
     $remind_line =~ s/ +/ /g;
-    
+
     # Log into remote server
-    my $host = $ENV{"TW_HOOK_REMIND_REMOTE_HOST"} or die "Cannot get TW_HOOK_REMIND_REMOTE_HOST environment variable";
-    my $user = $ENV{"TW_HOOK_REMIND_REMOTE_USER"} or die "Cannot get TW_HOOK_REMIND_REMOTE_USER environment variable";
-    
+    my $host = $ENV{"TW_HOOK_REMIND_REMOTE_HOST"}
+      or die "Cannot get TW_HOOK_REMIND_REMOTE_HOST environment variable";
+    my $user = $ENV{"TW_HOOK_REMIND_REMOTE_USER"}
+      or die "Cannot get TW_HOOK_REMIND_REMOTE_USER environment variable";
+
     # use correct port
-    if ($host =~ m/.*\.xyz$/) { $port = 2222 };
+    if ( $host =~ m/.*\.xyz$/ ) { $port = 2222 }
 
     say "Trying to establish connection at $host:$port ...";
-    my $ssh = Net::OpenSSH->new($host, user => $user, port => $port);
+    my $ssh = Net::OpenSSH->new( $host, user => $user, port => $port );
     $ssh->error and die "Couldn't establish SSH connection: " . $ssh->error;
 
     # Check for presence or remind file
-    if ($ssh->test("ls $work_rem_file") != 1) { die "Cannot find $work_rem_file on $host."};
+    if ( $ssh->test("ls $work_rem_file") != 1 ) {
+        die "Cannot find $work_rem_file on $host.";
+    }
 
     # If it is there, back it up
-    $ssh->system("cp $work_rem_file $work_rem_file.bak") or die "Cannot create a back-up of remind file."; 
+    $ssh->system("cp $work_rem_file $work_rem_file.bak")
+      or die "Cannot create a back-up of remind file.";
 
     # Append the Remind formatted line to the original remind file
-    $ssh->system({stdin_data => $remind_line}, "cat >> $work_rem_file") or die "Cannot append text: " . $ssh->error;
+    $ssh->system( { stdin_data => $remind_line }, "cat >> $work_rem_file" )
+      or die "Cannot append text: " . $ssh->error;
 
     # Get content of remind file
     my @out_file = $ssh->capture("cat $work_rem_file");
 
-
     print qq/
-Contents of $work_rem_file on $host is now:\n/,
-    @out_file;
+Contents of $work_rem_file on $host is now:\n/, @out_file;
 
     # TODO - we need to strip away the %:MIN syntax from the original
     # description - need to substitute it here!
     $decoded_task->{description} = $original_description;
     print encode_json $decoded_task;
     exit 0;
-} else {
-   print $added_task;
-   print("Add hook not used.\n");
-   exit 0;
+}
+else {
+    print $added_task;
+    print("Add hook not used.\n");
+    exit 0;
 }
 
 =pod
@@ -110,6 +146,41 @@ Contents of $work_rem_file on $host is now:\n/,
 =head1 NAME
 
 on-add_scheduled_work_task
+
+=head1 SYNOPSIS
+
+=over
+
+=item C<task add Meaningless event at work +dft scheduled:2021-10-10>
+
+This will create an untimed reminder for 10 October 2021.
+
+=item C<task add Meaningless event at work D+2 +dft scheduled:2021-10-10>
+
+This will create an untimed reminder for 10 October 2021 and remind you of it 2 days in advance.
+
+=item C<task add Meaningless event at work D*2 +dft scheduled:2021-10-10>
+
+This will create an untimed reminder for 10 October 2021 and every other day subsequently.
+
+=item C<task add Meaningless event at work D*2 +dft scheduled:2021-10-10T10:00Z>
+
+This will create a reminder for 10 October 2021 at 11:00BST and every other day subsequently at the same time.
+
+=item C<task add Meaningless meeting at work +dft scheduled:2021-10-10T10:00Z>
+
+This will create a reminder for 11:00BST for 10 October 2021.
+
+=item C<task add Meaningless meeting at work +10 +dft scheduled:2021-10-10T10:00Z>
+
+This will create a reminder for 11:00BST for 10 October 2021, and hassle you once 10 minutes before the meeting.
+
+=item C<task add Meaningless meeting at work +10 *1 +dft scheduled:2021-10-10T10:00Z>
+
+This will create a reminder for 11:00BST for 10 October 2021, and hassle you once 10 minutes before the meeting AND each minute 
+from then until the start of the meeting.
+
+=back
 
 =head1 DESCRIPTION
 
@@ -212,20 +283,30 @@ whereas tdelta relates to time in the C<AT> clause. We wish to retain the use of
 from tdelta so for delta we prefix with C<D>: e.g. C<D+10> which says that this must give us advance warning of 10 days. At this point, we
 are only using one C<+>, not two because use of the C<OMIT> keyword is not yet implemented.
 
+=over
+
 =item
 
 C<task add Meaningless meeting D+2 +dft scheduled:2021-10-09T10:00Z>
 
 =back
 
-This will pre-warn us 2 days in advance of the meaningless meeting scheduled to take place on 9 October 2021 at 11:00BST.
-
-TODO
+This will pre-warn us 2 days in advance of the meaningless meeting scheduled to take place on 9 October 2021 at 11:00BST. The advance 
+warning triggers will not trigger at the time of the meeting; instead the calendar will show that the meaningless meeting is happening in X days.
 
 =head2 Example using repeat (a remind command which creates a repeating event)
 
-TODO
+This will set an event for the specified date/date and time and will repeat X days following.
 
+=over
+
+=item
+
+C<task add Meaningless meeting D*2 +dft scheduled:2021-10-09T10:00Z>
+
+=back
+
+All tokens: C<delta>, C<repeat>, C<tdelta> and C<trepeat> can be mixed and matched in the C<task> description.
 
 =cut
 
