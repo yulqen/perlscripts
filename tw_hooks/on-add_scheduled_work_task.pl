@@ -135,13 +135,61 @@ for a time and date.
 
 =back
 
+=head1 REMIND SYNTAX
+
+C<REM [ONCE] [date_spec] [back] [delta] [repeat] [PRIORITY prio] [SKIP | BEFORE | AFTER] [OMIT omit_list] [OMITFUNC omit_function] [AT time
+[tdelta] [trepeat]] [SCHED sched_function] [WARN warn_function] [UNTIL expiry_date] [SCANFROM scan_date | FROM start_date] [DURATION
+duration] [TAG tag] E<lt>MSG | MSF | RUN | CAL | SATISFY | SPECIAL special | PS | PSFILEE<gt> body>
+
+The elements we are interested in are:
+
+=over
+
+=item * delta (for advanced warning of the date)
+
+=item * repeat (for repeating from the trigger date)
+
+=item * tdelta (for advanced warning of the AT time)
+
+=item * trepeat (for repeating the advanced reminder)
+
+=back
+
+=head2 Advance warning (delta)
+
+For some reminders, it is appropriate to receive advance warning of the event. For example, you may wish to be reminded of someone's birthday
+several days in advance. The delta portion of the REM command achieves this. It is specified as one or two "+" signs followed by a number n.
+Again, the difference between the "+" and "++" forms will be explained under the OMIT keyword. Remind will trigger the reminder on computed
+trigger date, as well as on each of the n days before the event. Here are some examples:
+
+C<REM 6 Jan +5 MSG Remind me of birthday 5 days in advance.>
+
+The above example would be triggered every 6th of January, as well as the 1st through 5th of January.
+
+=head2 Recurring events (repeat)
+
+However, events that do not repeat daily, weekly, monthly or yearly require another approach. The repeat component of the REM command fills this
+need. To use it, you must completely specify a date (year, month and day, and optionally weekday.) The repeat component is an asterisk
+followed by a number specifying the repetition period in days.
+
+For example, suppose you get paid every second Wednesday, and your last payday was Wednesday, 28 October, 1992. You can use:
+
+C<REM 28 Oct 1992 *14 MSG Payday>
+
+This issues the reminder every 14 days, starting from the calculated trigger date. You can use delta and back with repeat. Note, however, that the
+back is used only to compute the initial trigger date; thereafter, the reminder repeats with the specified period. Similarly, if you specify
+a weekday, it is used only to calculate the initial date, and does not affect the repetition period.
+
 =head1 REQUIRED TASKWARRIOR FORMAT
 
 The hook is only triggered when a new task is added with a "dft" tag and is "scheduled".
 
-Here is a full example, which includes a remind C<tdelta> and C<trepeat>:
+=head2 Example using tdelta and trepeat (a remind command with AT/timed element)
 
-=over 8
+The syntax for tdelta and trepeat must be included in the task description. It matches the equivalent remind syntax (+10 and *1).
+These are removed from the description before saving and are used in the C<AT> clause in remind.
+
+=over
 
 =item
 
@@ -156,6 +204,28 @@ every minute (C<*1>) between the initial reminder and the time of the meeting it
 
 The additional C<tdelta> and C<trepeat> tags (+10 and *1) are removed from the task description before either getting to remind
 or to taskwarrior.
+
+=head2 Example using delta (a remind command with advanced warning in days)
+
+The only way that delta is different from tdelta inside the remind REM command is from it's placement: delta relates to the date aspect
+whereas tdelta relates to time in the C<AT> clause. We wish to retain the use of "+" but we must distinguise it inside the task description
+from tdelta so for delta we prefix with C<D>: e.g. C<D+10> which says that this must give us advance warning of 10 days. At this point, we
+are only using one C<+>, not two because use of the C<OMIT> keyword is not yet implemented.
+
+=item
+
+C<task add Meaningless meeting D+2 +dft scheduled:2021-10-09T10:00Z>
+
+=back
+
+This will pre-warn us 2 days in advance of the meaningless meeting scheduled to take place on 9 October 2021 at 11:00BST.
+
+TODO
+
+=head2 Example using repeat (a remind command which creates a repeating event)
+
+TODO
+
 
 =cut
 
