@@ -100,7 +100,7 @@ Contents of $work_rem_file on $host is now:\n/,
     print encode_json $decoded_task;
     exit 0;
 } else {
-#  print encode_json $decoded_task; 
+   print $added_task;
    print("Add hook not used.\n");
    exit 0;
 }
