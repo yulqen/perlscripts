@@ -16,9 +16,6 @@ sub parse_scheduled {
     return DateTime::Format::ISO8601->parse_datetime($sched_date);
 }
 
-# ALGORITHM
-# Parse the scheduled attribute from TW
-
 my %token_regexes = (
     tdelta  => qr/\+(\d+)/,    # +INT (see remind man page)
     trepeat => qr/\*(\d+)/,    # *INT (see remind man page)
