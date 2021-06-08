@@ -18,15 +18,15 @@
     },
     {
       "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS",
-      "category": "NONE"
+      "category": "expenses:postage"
     },
     {
       "desc": "W M MORRISON PETRO BERWICK UPON VIS",
-      "category": "NONE"
+      "category": "expenses:car:petrol"
     },
     {
       "desc": "ZURICH INSURANCE DD",
-      "category": "NONE"
+      "category": "expenses:insurance"
     },
     {
       "category": "NONE",
@@ -34,11 +34,11 @@
     },
     {
       "desc": "PAYPAL *JOULES PLC 35314369001 VIS",
-      "category": "NONE"
+      "category": "expenses:clothing"
     },
     {
       "desc": "MARKS&SPENCER PLC INTERNET VIS",
-      "category": "NONE"
+      "category": "expenses:clothing"
     },
     {
       "category": "expenses:clothing",
@@ -49,35 +49,27 @@
       "category": "NONE"
     },
     {
-      "category": "NONE",
+      "category": "expenses:fees",
       "desc": "Non-Sterling Transaction Fee DR"
     },
     {
-      "category": "NONE",
+      "category": "expenses:hosting",
       "desc": "INT'L 0026586608 DIGITALOCEAN.COM DIGITALOCEAN. USD 38.04 @ 1.4146 Visa Rate VIS"
     },
     {
-      "desc": "MARKS&SPENCER PLC INTERNET VIS",
-      "category": "NONE"
-    },
-    {
       "desc": "REFRESHCARTRIDGES. INTERNET VIS",
-      "category": "NONE"
+      "category": "expenses:stationery"
     },
     {
-      "category": "NONE",
+      "category": "expenses:hotels",
       "desc": "PREMIER INN4403326 HULL VIS"
     },
     {
-      "category": "NONE",
-      "desc": "PAYPAL *JOULES PLC 35314369001 VIS"
-    },
-    {
-      "category": "NONE",
+      "category": "expenses:harvey_ctf",
       "desc": "HARVEY W LEMON CTF PP382029B SO"
     },
     {
-      "category": "NONE",
+      "category": "expenses:utilities:gas_and_electric",
       "desc": "SCOTTISHPOWER DD"
     },
     {
@@ -90,39 +82,27 @@
     },
     {
       "desc": "B&M 013 - BERWICK BERWICK-UPON- )))",
-      "category": "NONE"
+      "category": "expenses:household_goods"
     },
     {
       "desc": "TESCO STORES 6181 BERWICK )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "TESCO STORES 6181 BERWICK VIS",
-      "category": "NONE"
+      "category": "expenses:groceries"
     },
     {
       "category": "NONE",
       "desc": "GO OUTDOORS BERWICK VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:parking",
       "desc": "Q PARK OMNI EDINBURGH )))"
     },
     {
       "desc": "WATERSTONES EDINBURGH )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "TESCO STORE 2607 HADDINGTON )))",
-      "category": "NONE"
+      "category": "expenses:books"
     },
     {
       "desc": "SUMUP *MARSHALL C BERWICK-UPON- )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "WATERSTONES EDINBURGH )))",
-      "category": "NONE"
+      "category": "expenses:cafe"
     },
     {
       "desc": "HARVEY NICHOLS EDINBURGH VIS",
@@ -130,7 +110,7 @@
     },
     {
       "desc": "PIZZA EXPRESS EDINBURGH 185 VIS",
-      "category": "NONE"
+      "category": "expenses:restaurant"
     },
     {
       "category": "NONE",
@@ -138,43 +118,35 @@
     },
     {
       "category": "NONE",
-      "desc": "MARKS&SPENCER PLC INTERNET VIS"
-    },
-    {
-      "category": "NONE",
       "desc": "Amazon.co.uk*2T9UI AMAZON.CO.UK VIS"
     },
     {
       "desc": "NORTHUMBRIAN WATER DD",
-      "category": "NONE"
+      "category": "expenses:utilities:water"
     },
     {
-      "category": "NONE",
+      "category": "expenses:utilities:tv_licence",
       "desc": "TV LICENCE MBP DD"
     },
     {
       "desc": "NCC - RECEIPTS ACC DD",
-      "category": "NONE"
+      "category": "expenses:council_tax"
     },
     {
       "desc": "SANTANDER MORTGAGE DD",
-      "category": "NONE"
+      "category": "expenses:mortgage"
     },
     {
       "desc": "ROYAL LONDON DD",
-      "category": "NONE"
+      "category": "expenses:insurance"
     },
     {
       "desc": "SCHOOLGRID LTD DD",
-      "category": "NONE"
-    },
-    {
-      "category": "NONE",
-      "desc": "SCHOOLGRID LTD DD"
+      "category": "expenses:school"
     },
     {
       "desc": "PNET1056659-3 DD",
-      "category": "NONE"
+      "category": "expenses:internet"
     },
     {
       "desc": "400713 72004526 INTERNET TRANSFER TFR",
@@ -217,20 +189,16 @@
       "desc": "INT'L 0080951971 ETSY ETSY.COM VIS"
     },
     {
-      "category": "NONE",
-      "desc": "G C GRIEVE BERWICK UPON )))"
-    },
-    {
       "desc": "G C GRIEVE BERWICK UPON )))",
       "category": "NONE"
     },
     {
-      "category": "NONE",
+      "category": "expenses:takeaway",
       "desc": "GREGGS BERWICK UPON )))"
     },
     {
       "desc": "ROBERTSONS BERWICK-UPON- VIS",
-      "category": "NONE"
+      "category": "expenses:clothing"
     },
     {
       "category": "NONE",
@@ -241,44 +209,28 @@
       "category": "NONE"
     },
     {
-      "desc": "PAYPAL *JOULES PLC 35314369001 VIS",
-      "category": "NONE"
-    },
-    {
       "category": "NONE",
       "desc": "GOOGLE *Google Sto g.co/helppay# VIS"
-    },
-    {
-      "category": "NONE",
-      "desc": "TESCO STORES 6181 BERWICK VIS"
-    },
-    {
-      "category": "NONE",
-      "desc": "TESCO STORES 6181 BERWICK VIS"
     },
     {
       "desc": "WH SMITH BERWICK-O-TWE )))",
       "category": "NONE"
     },
     {
-      "category": "NONE",
+      "category": "expenses:cafe",
       "desc": "SUMUP *DEYNS DELI BERWICK UPON )))"
     },
     {
       "desc": "VODAFONE BERWICK UPON )))",
-      "category": "NONE"
+      "category": "expenses:phone"
     },
     {
       "category": "NONE",
       "desc": "Amazon.co.uk*2T7L8 AMAZON.CO.UK VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:sophie_isa",
       "desc": "FAMILY EQUITY PLAN DD"
-    },
-    {
-      "category": "NONE",
-      "desc": "MARKS&SPENCER PLC BERWICK UPON )))"
     },
     {
       "category": "NONE",
@@ -289,20 +241,12 @@
       "desc": "Amazon.co.uk*MK1VD AMAZON.CO.UK VIS"
     },
     {
-      "category": "NONE",
-      "desc": "J P Boden and Co L London VIS"
-    },
-    {
       "desc": "INT'L 0013369091 Kindle Svcs*MK27G3 353-12477661 VIS",
-      "category": "NONE"
+      "category": "expenses:books"
     },
     {
       "desc": "INT'L 0006888197 PP*ROBLOX CORP ROB 402-935-7733 VIS",
-      "category": "NONE"
-    },
-    {
-      "desc": "INT'L 0006888196 Kindle Svcs*MK3IH9 353-12477661 VIS",
-      "category": "NONE"
+      "category": "expenses:games"
     },
     {
       "category": "NONE",
@@ -317,44 +261,24 @@
       "category": "NONE"
     },
     {
-      "desc": "J P Boden and Co L London VIS",
-      "category": "NONE"
-    },
-    {
       "category": "NONE",
       "desc": "AMZNMktplace amazon.co.uk VIS"
     },
     {
-      "desc": "TESCO STORES 6181 BERWICK VIS",
-      "category": "NONE"
-    },
-    {
       "desc": "COLDINGHAM BEACH C EYEMOUTH )))",
-      "category": "NONE"
+      "category": "expenses:cafe"
     },
     {
-      "category": "NONE",
+      "category": "expenses:pharmacueticals",
       "desc": "LLOYDS PHARMACY BERWICK UPON )))"
     },
     {
-      "category": "NONE",
+      "category": "expenses:gifts",
       "desc": "CARD FACTORY BERWICK )))"
     },
     {
-      "desc": "TESCO STORES 6181 BERWICK )))",
-      "category": "NONE"
-    },
-    {
-      "category": "NONE",
-      "desc": "TESCO STORES 6181 BERWICK )))"
-    },
-    {
       "desc": "THE WORKS BERWICK UPON )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "MARKS&SPENCER PLC INTERNET VIS",
-      "category": "NONE"
+      "category": "expenses:stationery"
     },
     {
       "desc": "AMZNMktplace amazon.co.uk VIS",
@@ -365,7 +289,7 @@
       "desc": "AMZNMktplace amazon.co.uk VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:clothing",
       "desc": "SPORTSDIRECT 410 08443325410 VIS"
     },
     {
@@ -377,12 +301,8 @@
       "category": "NONE"
     },
     {
-      "category": "NONE",
+      "category": "expenses:streaming",
       "desc": "NETFLIX.COM 18665797172 VIS"
-    },
-    {
-      "desc": "J P Boden and Co L London VIS",
-      "category": "NONE"
     },
     {
       "desc": "IZ *Ashleigh Affle Ayton VIS",
@@ -402,31 +322,19 @@
     },
     {
       "desc": "SAVERS HEALTH & BE BERWICK-UPON- )))",
-      "category": "NONE"
+      "category": "expenses:pharmacueticals"
     },
     {
-      "category": "NONE",
-      "desc": "SPORTSDIRECT 410 08443325410 )))"
-    },
-    {
-      "category": "NONE",
-      "desc": "SPORTSDIRECT 410 08443325410 )))"
-    },
-    {
-      "category": "NONE",
+      "category": "expenses:postage",
       "desc": "POST OFFICE COUNTE BERWICK UPON VIS"
     },
     {
-      "desc": "ZURICH INSURANCE DD",
-      "category": "NONE"
-    },
-    {
-      "category": "NONE",
+      "category": "expenses:clothing",
       "desc": "CLARKS.CO.UK STREET VIS"
     },
     {
       "desc": "PLUSNET PLC PAY AC DD",
-      "category": "NONE"
+      "category": "expenses:phone"
     },
     {
       "category": "NONE",
@@ -437,32 +345,8 @@
       "category": "NONE"
     },
     {
-      "desc": "TESCO STORES 6181 BERWICK )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "TESCO STORES 6181 BERWICK )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "TESCO STORES 6181 BERWICK )))",
-      "category": "NONE"
-    },
-    {
-      "category": "NONE",
-      "desc": "SPORTSDIRECT 410 08443325410 VIS"
-    },
-    {
-      "desc": "SAVERS HEALTH & BE BERWICK-UPON- )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "CARD FACTORY BERWICK )))",
-      "category": "NONE"
-    },
-    {
       "desc": "HOME BARGAINS BERW BERWICK )))",
-      "category": "NONE"
+      "category": "expenses:household_goods"
     },
     {
       "desc": "AMZNMktplace amazon.co.uk VIS",
@@ -497,10 +381,6 @@
       "category": "NONE"
     },
     {
-      "desc": "J P Boden and Co L London VIS",
-      "category": "NONE"
-    },
-    {
       "desc": "INT'L 0020100138 Amazon Prime*MK5ZD amzn.co.uk/pm VIS",
       "category": "NONE"
     },
@@ -529,15 +409,7 @@
       "desc": "Spotify P14A7F5C7D London VIS"
     },
     {
-      "category": "NONE",
-      "desc": "TESCO STORES 6181 BERWICK )))"
-    },
-    {
       "desc": "THE ROYAL GARDEN B BERWICK UPON )))",
-      "category": "NONE"
-    },
-    {
-      "desc": "TESCO STORES 6181 BERWICK VIS",
       "category": "NONE"
     },
     {
@@ -551,10 +423,6 @@
     {
       "desc": "NORTHUMBRIAN WATER DD",
       "category": "NONE"
-    },
-    {
-      "category": "NONE",
-      "desc": "ZURICH INSURANCE DD"
     },
     {
       "category": "NONE",
@@ -617,10 +485,6 @@
       "category": "NONE"
     },
     {
-      "category": "NONE",
-      "desc": "TESCO STORES 6181 BERWICK VIS"
-    },
-    {
       "desc": "Marquee Arts Limit INVOICE 1 CR",
       "category": "NONE"
     },
@@ -669,20 +533,12 @@
       "desc": "SECUREPAY.MBNA.CO. CHESTER VIS"
     },
     {
-      "desc": "J P Boden and Co L London VIS",
-      "category": "NONE"
-    },
-    {
       "category": "NONE",
       "desc": "WWW.APLPACKAGING.C WORTHING VIS"
     },
     {
       "category": "NONE",
       "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS"
-    },
-    {
-      "desc": "REFRESHCARTRIDGES. INTERNET VIS",
-      "category": "NONE"
     },
     {
       "category": "NONE",
@@ -693,15 +549,11 @@
       "desc": "INT'L 0024393137 AMAZON.CO.UK*M426C AMAZON.CO.UK VIS"
     },
     {
-      "desc": "TESCO STORES 6181 BERWICK )))",
-      "category": "NONE"
-    },
-    {
       "category": "NONE",
       "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:clothing",
       "desc": "J P Boden and Co L London VIS"
     },
     {
