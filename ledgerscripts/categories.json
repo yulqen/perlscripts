@@ -1,0 +1,720 @@
+{
+  "data": [
+    {
+      "category": "NONE",
+      "desc": "CASH RB SCOT JUN06 TESCO BRWCK @14:07 ATM"
+    },
+    {
+      "category": "NONE",
+      "desc": "CASH RB SCOT JUN06 TESCO BRWCK @14:05 ATM"
+    },
+    {
+      "category": "expenses:groceries",
+      "desc": "WM MORRISONS STORE BERWICK UT )))"
+    },
+    {
+      "category": "expenses:streaming",
+      "desc": "SPOTIFY LONDON VIS"
+    },
+    {
+      "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "W M MORRISON PETRO BERWICK UPON VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "ZURICH INSURANCE DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0034245158 AMAZON PRIME*2T7IR AMZN.CO.UK/PM VIS"
+    },
+    {
+      "desc": "PAYPAL *JOULES PLC 35314369001 VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "MARKS&SPENCER PLC INTERNET VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "expenses:clothing",
+      "desc": "NEXT DIRECTORY ONLINE VIS"
+    },
+    {
+      "desc": "INT'L 0026603799 ETSY ETSY.COM VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "Non-Sterling Transaction Fee DR"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0026586608 DIGITALOCEAN.COM DIGITALOCEAN. USD 38.04 @ 1.4146 Visa Rate VIS"
+    },
+    {
+      "desc": "MARKS&SPENCER PLC INTERNET VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "REFRESHCARTRIDGES. INTERNET VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "PREMIER INN4403326 HULL VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "PAYPAL *JOULES PLC 35314369001 VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "HARVEY W LEMON CTF PP382029B SO"
+    },
+    {
+      "category": "NONE",
+      "desc": "SCOTTISHPOWER DD"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0018811184 AMAZON.CO.UK*2T6ZK AMAZON.CO.UK VIS"
+    },
+    {
+      "desc": "PAYPAL *GAILAUK 35314369001 VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "B&M 013 - BERWICK BERWICK-UPON- )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "GO OUTDOORS BERWICK VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "Q PARK OMNI EDINBURGH )))"
+    },
+    {
+      "desc": "WATERSTONES EDINBURGH )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "TESCO STORE 2607 HADDINGTON )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "SUMUP *MARSHALL C BERWICK-UPON- )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "WATERSTONES EDINBURGH )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "HARVEY NICHOLS EDINBURGH VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "PIZZA EXPRESS EDINBURGH 185 VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "AMZNMKTPLACE AMAZO AMAZON.CO.UK VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "MARKS&SPENCER PLC INTERNET VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "Amazon.co.uk*2T9UI AMAZON.CO.UK VIS"
+    },
+    {
+      "desc": "NORTHUMBRIAN WATER DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "TV LICENCE MBP DD"
+    },
+    {
+      "desc": "NCC - RECEIPTS ACC DD",
+      "category": "NONE"
+    },
+    {
+      "desc": "SANTANDER MORTGAGE DD",
+      "category": "NONE"
+    },
+    {
+      "desc": "ROYAL LONDON DD",
+      "category": "NONE"
+    },
+    {
+      "desc": "SCHOOLGRID LTD DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "SCHOOLGRID LTD DD"
+    },
+    {
+      "desc": "PNET1056659-3 DD",
+      "category": "NONE"
+    },
+    {
+      "desc": "400713 72004526 INTERNET TRANSFER TFR",
+      "category": "NONE"
+    },
+    {
+      "desc": "TARASOVA E MAY TEACHING CR",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0088268920 Kindle Svcs*2T3WD9 353-12477661 VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "Marquee Arts Limit INVOICE 2 CR",
+      "category": "NONE"
+    },
+    {
+      "desc": "DFT MAIN CR",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "HMRC CHILD BENEFIT CR"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0080951970 Etsy.com - Marvlin Dublin VIS"
+    },
+    {
+      "desc": "INT'L 0080935604 PAYPAL *STORYBUNDL 402-935-7733 VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0080935603 Kindle Svcs*2T1GK6 353-12477661 VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0080951971 ETSY ETSY.COM VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "G C GRIEVE BERWICK UPON )))"
+    },
+    {
+      "desc": "G C GRIEVE BERWICK UPON )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "GREGGS BERWICK UPON )))"
+    },
+    {
+      "desc": "ROBERTSONS BERWICK-UPON- VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "TARASOVA E EXPENSE MAZE KIDS CR"
+    },
+    {
+      "desc": "INT'L 0067376845 Etsy.com - ForgetM Dublin VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "PAYPAL *JOULES PLC 35314369001 VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "GOOGLE *Google Sto g.co/helppay# VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "TESCO STORES 6181 BERWICK VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "TESCO STORES 6181 BERWICK VIS"
+    },
+    {
+      "desc": "WH SMITH BERWICK-O-TWE )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "SUMUP *DEYNS DELI BERWICK UPON )))"
+    },
+    {
+      "desc": "VODAFONE BERWICK UPON )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "Amazon.co.uk*2T7L8 AMAZON.CO.UK VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "FAMILY EQUITY PLAN DD"
+    },
+    {
+      "category": "NONE",
+      "desc": "MARKS&SPENCER PLC BERWICK UPON )))"
+    },
+    {
+      "category": "NONE",
+      "desc": "AMZNMktplace amazon.co.uk VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "Amazon.co.uk*MK1VD AMAZON.CO.UK VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "J P Boden and Co L London VIS"
+    },
+    {
+      "desc": "INT'L 0013369091 Kindle Svcs*MK27G3 353-12477661 VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0006888197 PP*ROBLOX CORP ROB 402-935-7733 VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0006888196 Kindle Svcs*MK3IH9 353-12477661 VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0099818323 AMAZON.CO.UK*MK3DJ AMAZON.CO.UK VIS"
+    },
+    {
+      "desc": "INT'L 0013387518 AMAZON.CO.UK*MK7AM AMAZON.CO.UK VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0099837342 Amazon.co.uk*MK55S AMAZON.CO.UK VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "J P Boden and Co L London VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "AMZNMktplace amazon.co.uk VIS"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "COLDINGHAM BEACH C EYEMOUTH )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "LLOYDS PHARMACY BERWICK UPON )))"
+    },
+    {
+      "category": "NONE",
+      "desc": "CARD FACTORY BERWICK )))"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "TESCO STORES 6181 BERWICK )))"
+    },
+    {
+      "desc": "THE WORKS BERWICK UPON )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "MARKS&SPENCER PLC INTERNET VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "AMZNMktplace amazon.co.uk VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "AMZNMktplace amazon.co.uk VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "SPORTSDIRECT 410 08443325410 VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "HMRC CHILD BENEFIT CR"
+    },
+    {
+      "desc": "INT'L 0092773407 AMZNFreeTime 353-12477661 VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "NETFLIX.COM 18665797172 VIS"
+    },
+    {
+      "desc": "J P Boden and Co L London VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "IZ *Ashleigh Affle Ayton VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "PAYPAL*LEMON MATTH Richmond VIS"
+    },
+    {
+      "desc": "GOCARDLESS FIRST PAYMENT DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0086023680 Amazon.co.uk*MK1ZN AMAZON.CO.UK VIS"
+    },
+    {
+      "desc": "SAVERS HEALTH & BE BERWICK-UPON- )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "SPORTSDIRECT 410 08443325410 )))"
+    },
+    {
+      "category": "NONE",
+      "desc": "SPORTSDIRECT 410 08443325410 )))"
+    },
+    {
+      "category": "NONE",
+      "desc": "POST OFFICE COUNTE BERWICK UPON VIS"
+    },
+    {
+      "desc": "ZURICH INSURANCE DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "CLARKS.CO.UK STREET VIS"
+    },
+    {
+      "desc": "PLUSNET PLC PAY AC DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0060498418 AMZN DIGITAL*MK8WO 35312477661 VIS"
+    },
+    {
+      "desc": "INT'L 0053560906 Amazon.co.uk*MK0RW AMAZON.CO.UK VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "SPORTSDIRECT 410 08443325410 VIS"
+    },
+    {
+      "desc": "SAVERS HEALTH & BE BERWICK-UPON- )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "CARD FACTORY BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "HOME BARGAINS BERW BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "AMZNMktplace amazon.co.uk VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0045993827 Amazon.co.uk*MK1C8 AMAZON.CO.UK VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0045993826 AMAZON.CO.UK*MK2GI AMAZON.CO.UK VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "AMZNMktplace amazon.co.uk VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "PLUSNET PLC PAY AC DD",
+      "category": "NONE"
+    },
+    {
+      "desc": "HLAM REGULAR SAVIN DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "AMZNMKTPLACE AMAZO AMAZON.CO.UK VIS"
+    },
+    {
+      "desc": "INT'L 0032865732 STEAMGAMES.COM 425 Hamburg VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "J P Boden and Co L London VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0020100138 Amazon Prime*MK5ZD amzn.co.uk/pm VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0013564742 ETSY ETSY.COM VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "Non-Sterling Transaction Fee DR"
+    },
+    {
+      "desc": "INT'L 0013541835 HOVER 8667316556 USD 20.17 @ 1.3796 Visa Rate VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "Non-Sterling Transaction Fee DR"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0013541834 DIGITALOCEAN.COM DIGITALOCEAN. USD 38.04 @ 1.3797 Visa Rate VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "Spotify P14A7F5C7D London VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "TESCO STORES 6181 BERWICK )))"
+    },
+    {
+      "desc": "THE ROYAL GARDEN B BERWICK UPON )))",
+      "category": "NONE"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "W M MORRISON PETRO BERWICK 168 VIS",
+      "category": "NONE"
+    },
+    {
+      "desc": "HARVEY W LEMON CTF PP382029B SO",
+      "category": "NONE"
+    },
+    {
+      "desc": "NORTHUMBRIAN WATER DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "ZURICH INSURANCE DD"
+    },
+    {
+      "category": "NONE",
+      "desc": "TV LICENCE MBP DD"
+    },
+    {
+      "desc": "NCC - RECEIPTS ACC DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "SCOTTISHPOWER DD"
+    },
+    {
+      "desc": "SANTANDER MORTGAGE DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "ROYAL LONDON DD"
+    },
+    {
+      "desc": "SCHOOLGRID LTD DD",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "SCHOOLGRID LTD DD"
+    },
+    {
+      "category": "NONE",
+      "desc": "PNET1056659-3 DD"
+    },
+    {
+      "category": "NONE",
+      "desc": "DFT MAIN CR"
+    },
+    {
+      "category": "NONE",
+      "desc": "HMRC CHILD BENEFIT CR"
+    },
+    {
+      "desc": "400713 72004526 INTERNET TRANSFER TFR",
+      "category": "NONE"
+    },
+    {
+      "desc": "TARASOVA E APRIL TEACHING CR",
+      "category": "NONE"
+    },
+    {
+      "desc": "INT'L 0057478724 AMAZON.CO.UK*M48OX AMAZON.CO.UK VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "NORTHUMBERLAND COU MORPETH )))"
+    },
+    {
+      "desc": "BRITISH BEEF JERKY MORPETH )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "TESCO STORES 6181 BERWICK VIS"
+    },
+    {
+      "desc": "Marquee Arts Limit INVOICE 1 CR",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "Non-Sterling Transaction Fee DR"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0050174075 DEREK SIVERS HTTPSSIVE.RS USD 15.00 @ 1.3888 Visa Rate VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "AMZNMKTPLACE AMAZO AMAZON.CO.UK VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "GALEDIN VETS GLN B BERWICK-UPON- VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "FAMILY EQUITY PLAN DD"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0043563022 Etsy.com - victori Dublin VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "Non-Sterling Transaction Fee DR"
+    },
+    {
+      "desc": "INT'L 0037208809 Fastmail Pty Ltd Melbourne USD 6.00 @ 1.3729 Visa Rate VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "CARD FACTORY BERWICK )))"
+    },
+    {
+      "category": "NONE",
+      "desc": "THE BAG N BOX MAN 01295 788522 VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "SECUREPAY.MBNA.CO. CHESTER VIS"
+    },
+    {
+      "desc": "J P Boden and Co L London VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "WWW.APLPACKAGING.C WORTHING VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS"
+    },
+    {
+      "desc": "REFRESHCARTRIDGES. INTERNET VIS",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "TARASOVA E EXPENSES CR"
+    },
+    {
+      "category": "NONE",
+      "desc": "INT'L 0024393137 AMAZON.CO.UK*M426C AMAZON.CO.UK VIS"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK )))",
+      "category": "NONE"
+    },
+    {
+      "category": "NONE",
+      "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "J P Boden and Co L London VIS"
+    },
+    {
+      "category": "NONE",
+      "desc": "Etsy Ireland Unlim /PAYER ACC/POC2MZY CR"
+    },
+    {
+      "desc": "NORTHRIDGE FINANCE DD",
+      "category": "expenses:car"
+    },
+    {
+      "desc": "HMRC CHILD BENEFIT CR",
+      "category": "NONE"
+    }
+  ]
+}
