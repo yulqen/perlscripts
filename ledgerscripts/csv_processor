@@ -25,8 +25,8 @@ my @uncategorised;
 # arbitary value (in this case 0), then extract the keys
 # from the hash at the end - they will all have to be unique
 sub uniq {
-        my %temp_hash = map { $_, 0 } @_;
-        return keys %temp_hash;
+    my %temp_hash = map { $_, 0 } @_;
+    return keys %temp_hash;
 }
 
 my $file = $ARGV[0] or die "Need to get CSV file on the command line\n";
@@ -38,7 +38,7 @@ open( my $csvdata, '<:encoding(UTF-8)', $file )
         or die "Could not open category file $!\n";
     local $/ = undef;    # slurp mode!
     $cat_json = <$category_file>;
-    close( $category_file );
+    close($category_file);
 }
 
 my $catref = decode_json $cat_json;
@@ -128,7 +128,7 @@ while ( my $line = <$csvdata> ) {
 
 say "Unrecognized payees that need to be added to categories.json:";
 
-for (uniq @uncategorised) { say "* $_" };
+for ( uniq @uncategorised ) { say "* $_" }
 
 # The following code is used to output a JSON file
 # to be used for categories. Uncomment for use.
