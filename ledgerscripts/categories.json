@@ -1,11 +1,11 @@
 {
   "data": [
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "CASH RB SCOT JUN06 TESCO BRWCK @14:07 ATM"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "CASH RB SCOT JUN06 TESCO BRWCK @14:05 ATM"
     },
     {
@@ -29,7 +29,7 @@
       "category": "expenses:insurance"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0034245158 AMAZON PRIME*2T7IR AMZN.CO.UK/PM VIS"
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "desc": "INT'L 0026603799 ETSY ETSY.COM VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "category": "expenses:fees",
@@ -73,12 +73,12 @@
       "desc": "SCOTTISHPOWER DD"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0018811184 AMAZON.CO.UK*2T6ZK AMAZON.CO.UK VIS"
     },
     {
       "desc": "PAYPAL *GAILAUK 35314369001 VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "B&M 013 - BERWICK BERWICK-UPON- )))",
@@ -89,7 +89,7 @@
       "category": "expenses:groceries"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "GO OUTDOORS BERWICK VIS"
     },
     {
@@ -106,18 +106,18 @@
     },
     {
       "desc": "HARVEY NICHOLS EDINBURGH VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "PIZZA EXPRESS EDINBURGH 185 VIS",
       "category": "expenses:restaurant"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "AMZNMKTPLACE AMAZO AMAZON.CO.UK VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Amazon.co.uk*2T9UI AMAZON.CO.UK VIS"
     },
     {
@@ -150,47 +150,47 @@
     },
     {
       "desc": "400713 72004526 INTERNET TRANSFER TFR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "TARASOVA E MAY TEACHING CR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "INT'L 0088268920 Kindle Svcs*2T3WD9 353-12477661 VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "Marquee Arts Limit INVOICE 2 CR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "DFT MAIN CR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "HMRC CHILD BENEFIT CR"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0080951970 Etsy.com - Marvlin Dublin VIS"
     },
     {
       "desc": "INT'L 0080935604 PAYPAL *STORYBUNDL 402-935-7733 VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0080935603 Kindle Svcs*2T1GK6 353-12477661 VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0080951971 ETSY ETSY.COM VIS"
     },
     {
       "desc": "G C GRIEVE BERWICK UPON )))",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "category": "expenses:takeaway",
@@ -201,20 +201,20 @@
       "category": "expenses:clothing"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "TARASOVA E EXPENSE MAZE KIDS CR"
     },
     {
       "desc": "INT'L 0067376845 Etsy.com - ForgetM Dublin VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "GOOGLE *Google Sto g.co/helppay# VIS"
     },
     {
       "desc": "WH SMITH BERWICK-O-TWE )))",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "category": "expenses:cafe",
@@ -225,7 +225,7 @@
       "category": "expenses:phone"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Amazon.co.uk*2T7L8 AMAZON.CO.UK VIS"
     },
     {
@@ -233,11 +233,11 @@
       "desc": "FAMILY EQUITY PLAN DD"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "AMZNMktplace amazon.co.uk VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Amazon.co.uk*MK1VD AMAZON.CO.UK VIS"
     },
     {
@@ -249,19 +249,19 @@
       "category": "expenses:games"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0099818323 AMAZON.CO.UK*MK3DJ AMAZON.CO.UK VIS"
     },
     {
       "desc": "INT'L 0013387518 AMAZON.CO.UK*MK7AM AMAZON.CO.UK VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "INT'L 0099837342 Amazon.co.uk*MK55S AMAZON.CO.UK VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "AMZNMktplace amazon.co.uk VIS"
     },
     {
@@ -282,10 +282,10 @@
     },
     {
       "desc": "AMZNMktplace amazon.co.uk VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "AMZNMktplace amazon.co.uk VIS"
     },
     {
@@ -293,12 +293,12 @@
       "desc": "SPORTSDIRECT 410 08443325410 VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "HMRC CHILD BENEFIT CR"
     },
     {
       "desc": "INT'L 0092773407 AMZNFreeTime 353-12477661 VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "category": "expenses:streaming",
@@ -306,18 +306,18 @@
     },
     {
       "desc": "IZ *Ashleigh Affle Ayton VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "PAYPAL*LEMON MATTH Richmond VIS"
     },
     {
       "desc": "GOCARDLESS FIRST PAYMENT DD",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0086023680 Amazon.co.uk*MK1ZN AMAZON.CO.UK VIS"
     },
     {
@@ -337,12 +337,12 @@
       "category": "expenses:phone"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0060498418 AMZN DIGITAL*MK8WO 35312477661 VIS"
     },
     {
       "desc": "INT'L 0053560906 Amazon.co.uk*MK0RW AMAZON.CO.UK VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "HOME BARGAINS BERW BERWICK )))",
@@ -350,206 +350,206 @@
     },
     {
       "desc": "AMZNMktplace amazon.co.uk VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "INT'L 0045993827 Amazon.co.uk*MK1C8 AMAZON.CO.UK VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "INT'L 0045993826 AMAZON.CO.UK*MK2GI AMAZON.CO.UK VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "AMZNMktplace amazon.co.uk VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "PLUSNET PLC PAY AC DD",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "HLAM REGULAR SAVIN DD",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "AMZNMKTPLACE AMAZO AMAZON.CO.UK VIS"
     },
     {
       "desc": "INT'L 0032865732 STEAMGAMES.COM 425 Hamburg VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "INT'L 0020100138 Amazon Prime*MK5ZD amzn.co.uk/pm VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "INT'L 0013564742 ETSY ETSY.COM VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Non-Sterling Transaction Fee DR"
     },
     {
       "desc": "INT'L 0013541835 HOVER 8667316556 USD 20.17 @ 1.3796 Visa Rate VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Non-Sterling Transaction Fee DR"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0013541834 DIGITALOCEAN.COM DIGITALOCEAN. USD 38.04 @ 1.3797 Visa Rate VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Spotify P14A7F5C7D London VIS"
     },
     {
       "desc": "THE ROYAL GARDEN B BERWICK UPON )))",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "W M MORRISON PETRO BERWICK 168 VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "HARVEY W LEMON CTF PP382029B SO",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "NORTHUMBRIAN WATER DD",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "TV LICENCE MBP DD"
     },
     {
       "desc": "NCC - RECEIPTS ACC DD",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "SCOTTISHPOWER DD"
     },
     {
       "desc": "SANTANDER MORTGAGE DD",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "ROYAL LONDON DD"
     },
     {
       "desc": "SCHOOLGRID LTD DD",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "SCHOOLGRID LTD DD"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "PNET1056659-3 DD"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "DFT MAIN CR"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "HMRC CHILD BENEFIT CR"
     },
     {
       "desc": "400713 72004526 INTERNET TRANSFER TFR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "TARASOVA E APRIL TEACHING CR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "INT'L 0057478724 AMAZON.CO.UK*M48OX AMAZON.CO.UK VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "NORTHUMBERLAND COU MORPETH )))"
     },
     {
       "desc": "BRITISH BEEF JERKY MORPETH )))",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
       "desc": "Marquee Arts Limit INVOICE 1 CR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Non-Sterling Transaction Fee DR"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0050174075 DEREK SIVERS HTTPSSIVE.RS USD 15.00 @ 1.3888 Visa Rate VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "AMZNMKTPLACE AMAZO AMAZON.CO.UK VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "GALEDIN VETS GLN B BERWICK-UPON- VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "FAMILY EQUITY PLAN DD"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0043563022 Etsy.com - victori Dublin VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Non-Sterling Transaction Fee DR"
     },
     {
       "desc": "INT'L 0037208809 Fastmail Pty Ltd Melbourne USD 6.00 @ 1.3729 Visa Rate VIS",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "CARD FACTORY BERWICK )))"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "THE BAG N BOX MAN 01295 788522 VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "SECUREPAY.MBNA.CO. CHESTER VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "WWW.APLPACKAGING.C WORTHING VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "TARASOVA E EXPENSES CR"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "INT'L 0024393137 AMAZON.CO.UK*M426C AMAZON.CO.UK VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "ROYAL MAIL GROUP L CHESTERFIELD VIS"
     },
     {
@@ -557,7 +557,7 @@
       "desc": "J P Boden and Co L London VIS"
     },
     {
-      "category": "NONE",
+      "category": "expenses:UNKNOWN",
       "desc": "Etsy Ireland Unlim /PAYER ACC/POC2MZY CR"
     },
     {
@@ -566,7 +566,88 @@
     },
     {
       "desc": "HMRC CHILD BENEFIT CR",
-      "category": "NONE"
+      "category": "expenses:UNKNOWN"
+    },
+    {
+      "desc": "FERRIBY SERVICE ST HULL )))",
+      "category": "expenses:takeaway"
+    },
+    {
+      "desc": "INT'L 0057536052 EDINBURGH WAVERLEY EDINBURGH )))",
+      "category": "expenses:UNKNOWN"
+    },
+    {
+      "desc": "SPORTSDIRECT 410 08443325410 )))",
+      "category": "expenses:clothing"
+    },
+    {
+      "desc": "BARKERS COTTINGHAM )))",
+      "category": "expenses:takeaway"
+    },
+    {
+      "desc": "PIZZA EXPRESS BEVERLEY 1921 VIS",
+      "category": "expenses:restaurant"
+    },
+    {
+      "desc": "INT'L 0006888196 Kindle Svcs*MK3IH9 353-12477661 VIS",
+      "category": "expenses:books"
+    },
+    {
+      "desc": "MARKS&SPENCER PLC BERWICK UPON )))",
+      "category": "expenses:groceries"
+    },
+    {
+      "desc": "COOPLANDS BAKERY C COTTINGHAM HU )))",
+      "category": "expenses:groceries"
+    },
+    {
+      "desc": "PAYPAL *NEXT RETAI 35314369001 VIS",
+      "category": "expenses:groceries"
+    },
+    {
+      "desc": "THE DEEP 01482 381000 )))",
+      "category": "expenses:days_out"
+    },
+    {
+      "desc": "W H SMITH BEVERLEY )))",
+      "category": "expenses:books"
+    },
+    {
+      "desc": "East Riding Parkin East Riding o VIS",
+      "category": "expenses:parking"
+    },
+    {
+      "desc": "KINGS HEAD BEVERLEY )))",
+      "category": "expenses:pub"
+    },
+    {
+      "desc": "TESCO STORES 6181 BERWICK VIS",
+      "category": "expenses:groceries"
+    },
+    {
+      "desc": "BAKERS DOZEN COTTINGHAM )))",
+      "category": "expenses:takeaway"
+    },
+    {
+      "desc": "TESCO STORE 2607 HADDINGTON )))",
+      "category": "expenses:groceries"
+    },
+    {
+      "desc": "Amazon.co.uk*2T3NA AMAZON.CO.UK VIS",
+      "category": "expenses:UNKNOWN"
+    },
+    {
+      "desc": "LNER WEB SALES 07500447482 VIS",
+      "category": "expenses:train"
+    },
+    {
+      "desc": "WETHERBY WH SMITHS WEST YORKSHIR )))",
+      "category": "expenses:stationery"
+    },
+    {
+      "desc": "NCC PAYMENTS ACCOU CR",
+      "category": "expenses:stationery"
     }
+    
   ]
 }

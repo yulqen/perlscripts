@@ -8,9 +8,9 @@ use Text::CSV;
 use JSON;
 
 my $csv = Text::CSV->new(
-    {   sep_char => ',',
-        binary   => 1,
-        quote    => "\N{FULLWIDTH QUOTATION MARK}"
+    {   sep_char    => ',',
+        binary      => 1,
+        quote       => "\N{FULLWIDTH QUOTATION MARK}"
     }
 );
 
@@ -60,7 +60,10 @@ sub get_category_from_desc {
 }
 
 while ( my $line = <$csvdata> ) {
+    # remove the BOM from first line
     $line =~ s/^\N{BOM}//;
+    # TODO working on this
+    # $line =~ s/.*"(\d+),(\d+\.\d+)"/.*"$1$2"/;
     chomp $line;
     if ( $csv->parse($line) ) {
         my @fields = $csv->fields();
@@ -72,11 +75,14 @@ while ( my $line = <$csvdata> ) {
         $transaction{year}  = substr $fields[0], 6, 4;
         $transaction{date}  = $fields[0];
 
+        # default expense type
+        $transaction{exp_type} = "expenses:UNKNOWN";
+
         # remove extraneous spaces from description
         $fields[1] =~ s/\s+/ /g;
 
         # used to create the categories json file - see below
-        push @jlist, { "desc" => $fields[1], "category" => "NONE" };
+        push @jlist, { "desc" => $fields[1], "category" => "expenses:UKNOWN" };
 
         # add the description and cost
         $transaction{desc} = $fields[1];
@@ -113,12 +119,13 @@ while ( my $line = <$csvdata> ) {
 
         if ( $transaction{expense} == 1 ) {
             ( my $cost = $transaction{cost} ) =~ s/^\-//;
+            chomp $cost;
             print qq(\t$transaction{exp_type}\t$cost\n);
             print "\tassets:hsbc current\t$transaction{cost}\n";
             print "\n";
         }
         else {
-            print "\tincome:baws\t-$transaction{cost}\n";
+            print "\tincome:UNKNOWN\t-$transaction{cost}\n";
             print "\tassets:hsbc current\t$transaction{cost}\n";
             print "\n";
         }

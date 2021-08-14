@@ -78,6 +78,7 @@ my $scheduled_dt;
 
 if ( $decoded_task->{scheduled} and ( scalar grep { $_ eq "dft" } @{$tags} ) ) {
     $scheduled_dt = parse_scheduled $decoded_task->{scheduled};
+    # my @test_task = `task add Bobbins from Perl`;
     my $port  = 22;
     my $date  = $scheduled_dt->day();
     my $month = $short_months[ $scheduled_dt->month() - 1 ];
