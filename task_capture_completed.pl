@@ -13,6 +13,7 @@ my @x = split(/\n/, $stuff);
 
 # print "$_\n" foreach @x;
 
+my %tasks;
 my @taskids;
 my $id;
 
@@ -20,18 +21,15 @@ foreach my $line (@x) {
     my @data = split / /, $line;
     if (defined($data[4])) {
             if ($data[4] =~ /\S{8}/) {
-                push @taskids, ($data[4])
+                $tasks{$data[4]} = (
+                    [`task _get $data[4].description`,
+                    `task _get $data[4].end`]
+                )
         }
     }
 }
 
-foreach (@taskids) {
-    my $desc = `task _get $_.description`;
-    chomp $desc;
-    my $end = `task _get $_.end`;
-    $end = substr($end, 0, -1);
-    $end =~ s/T/ /;
-    printf "%s: %-50s\t%s\n", ($_, $desc, $end)
+while ( (my $key, my $value) = each %tasks ) {
+    print "$key => @{ $value }\n";
 }
 
-say "Found " .  scalar @taskids . " tasks.";
