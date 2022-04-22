@@ -9,7 +9,7 @@ use DateTime::Format::ISO8601;
 use Net::OpenSSH;
 
 
-my @short_months = qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+my @short_months = qw(January February March April May June July August September October November December);
 
 # subs
 sub parse_scheduled
