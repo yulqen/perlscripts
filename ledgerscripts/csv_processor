@@ -1,0 +1,147 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use 5.010;
+
+use Text::CSV;
+use JSON;
+
+my $csv = Text::CSV->new(
+    {   sep_char    => ',',
+        binary      => 1,
+        quote       => "\N{FULLWIDTH QUOTATION MARK}"
+    }
+);
+
+my %transaction;
+my @jlist;    # used to create the categories json fil0
+my $cat_json;
+my @uncategorised;
+
+# given a list, make it unique
+# this works because a hash cannot have duplicate keys
+# so you can keep adding keys to a temp_hash with an
+# arbitary value (in this case 0), then extract the keys
+# from the hash at the end - they will all have to be unique
+sub uniq {
+    my %temp_hash = map { $_, 0 } @_;
+    return keys %temp_hash;
+}
+
+my $file = $ARGV[0] or die "Need to get CSV file on the command line\n";
+open( my $csvdata, '<:encoding(UTF-8)', $file )
+    or die "Could not open '$file' $!\n";
+
+{
+    open( my $category_file, '<', "categories.json" )
+        or die "Could not open category file $!\n";
+    local $/ = undef;    # slurp mode!
+    $cat_json = <$category_file>;
+    close($category_file);
+}
+
+my $catref = decode_json $cat_json;
+my $cats   = $catref->{"data"};
+
+# say qq($catref_d->[0]->{"desc"});
+
+my @descs = map $_->{"desc"}, @{$cats};
+
+# self-explanatory
+sub get_category_from_desc {
+    my $desc = shift;
+    for my $hsh ( @{$cats} ) {
+        if ( $desc eq $hsh->{"desc"} ) {
+            return $hsh->{"category"};
+        }
+    }
+    return "UNKNOWN -> $desc";
+}
+
+while ( my $line = <$csvdata> ) {
+    # remove the BOM from first line
+    $line =~ s/^\N{BOM}//;
+    # TODO working on this
+    # $line =~ s/.*"(\d+),(\d+\.\d+)"/.*"$1$2"/;
+    chomp $line;
+    if ( $csv->parse($line) ) {
+        my @fields = $csv->fields();
+
+        # parse the date
+        # everything ends up in the transaction hash
+        $transaction{day}   = substr $fields[0], 0, 2;
+        $transaction{month} = substr $fields[0], 3, 2;
+        $transaction{year}  = substr $fields[0], 6, 4;
+        $transaction{date}  = $fields[0];
+
+        # default expense type
+        $transaction{exp_type} = "expenses:UNKNOWN";
+
+        # remove extraneous spaces from description
+        $fields[1] =~ s/\s+/ /g;
+
+        # used to create the categories json file - see below
+        push @jlist, { "desc" => $fields[1], "category" => "expenses:UKNOWN" };
+
+        # add the description and cost
+        $transaction{desc} = $fields[1];
+        $transaction{cost} = $fields[2];
+
+        my $c = get_category_from_desc $transaction{desc};
+
+        if ( $c =~ /^UNKNOWN ->.*$/ ) {
+            push @uncategorised, $transaction{desc};
+        }
+        else { $transaction{exp_type} = $c }
+
+        # parse the transaction type. Unused in ledger journal at moment
+        if ( $fields[1] =~ /^.+(VIS|DR|DD|TFR|CR|SO|ATM|\)\)\))$/ ) {
+            $transaction{type} = $1;
+        }
+        else { die("CANNOT DETERMINE TYPE!\n") }
+
+        # if the cost is negative, it is an expense category
+        if ( $fields[2] =~ /^\-/ ) {
+            $transaction{expense} = 1;
+        }
+        else { $transaction{expense} = 0; }
+
+        # write out the three line block representing the transaction
+        # in the ledger journal file
+        print join "",
+            (
+            $transaction{year}, "/", $transaction{month}, "/",
+            $transaction{day},  " ", "*",                 " ",
+            $transaction{desc}
+            ),
+            "\n";
+
+        if ( $transaction{expense} == 1 ) {
+            ( my $cost = $transaction{cost} ) =~ s/^\-//;
+            chomp $cost;
+            print qq(\t$transaction{exp_type}\t$cost\n);
+            print "\tassets:hsbc current\t$transaction{cost}\n";
+            print "\n";
+        }
+        else {
+            print "\tincome:UNKNOWN\t-$transaction{cost}\n";
+            print "\tassets:hsbc current\t$transaction{cost}\n";
+            print "\n";
+        }
+    }
+    else { warn "Line could not be parsed: $line\n"; }
+}
+
+say "Unrecognized payees that need to be added to categories.json:";
+
+for ( uniq @uncategorised ) { say "* $_" }
+
+# The following code is used to output a JSON file
+# to be used for categories. Uncomment for use.
+# my $data = encode_json {data => \@jlist};
+
+# open(my $fh, '>', "/tmp/categories.json") or die "Could not open file '/tmp/toss.json' $!";
+# print $fh $data;
+# close $fh;
+# print "done\n";
