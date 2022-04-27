@@ -1,4 +1,14 @@
 #!/usr/bin/env perl
+# This script will check ledger budger file and look for any transactions
+# with either SEJLB or HWLB in the line. These must be manually added and
+# indicate a transaction involving one of the children buying a book. The 
+# script will reprint that block, adding an additional line that calculates
+# half the cost of the time and subtracts it from their virtual account - 
+# we pay half, they pay half.
+# 
+# Outputs to STDOUT so you will have to redirect it somwhere. 
+#
+# DO NOT REDIRECT BACK TO THE FILE ITSELF
 
 use strict;
 use warnings;
@@ -7,27 +17,24 @@ use warnings;
 # basically sets empty lines as a terminator when set like this
 local $/ = "";
 
-open (my $outfile, ">", "/tmp/toss.txt")
-    or die "Can't open output file.";
-
 my @infile = <>;
 
-my $child_asset_line = "(Assets:Child:CHILD)\t\t£COST\n";
+my $child_asset_line = 
+    "(Assets:Child:CHILD)\t\t-£COST\n    Assets:Current:HSBC\t\t\t£ORIGINAL\n";
 
 for my $block (@infile) {
     my $child;
-    if ($block =~ /(SEJLB|HWLB).*Books.*(\d+\.\d+)/s) {
+    if ($block =~ /(SEJLB|HWLB)/ms) {
         if ($1 eq "HWLB") { $child = "Harvey"} else { $child = "Sophie" };
         (my $cost) = ($block =~ /£(\d+\.\d+)/);
         (my $cat) = ($block =~ /(\w+\:\w+)/);
         chomp $block;
-        print $outfile $block;
+        $block =~ s/( SEJLB| HWLB)//g;
+        print $block;
         $child_asset_line =~ s/CHILD/$child/;
         my $halve = sprintf("%.2f", ($cost / 2));
         $child_asset_line =~ s/COST/$halve/;
-        print $outfile "\n". "   " . $child_asset_line . "\n";
-    } else { print $outfile $block; }
+        $child_asset_line =~ s/ORIGINAL/$cost/;
+        print "\n". "   " . $child_asset_line . "\n";
+    } else { print $block; }
 }
-
-close $outfile;
-
