@@ -13,6 +13,10 @@ use warnings;
 local $/ = ""; # switch to paragraph mode (allow use of /m modifier below)
 
 while (<>) {
+    # we only want true expenses, no income, rebates, pocket money, etc
+    # Not all undesirable cases will be found based on this so be warned!
+    next if (/Pocket Money|Income|Assets|[Rr]ebate/);
+    next if (/-£/);
     if (/\d{4}.*\* (.*)$/m) { print $1 . "@" };
     if (/Expenses:(.*)£/) { print $1 . "\n" };
 }
