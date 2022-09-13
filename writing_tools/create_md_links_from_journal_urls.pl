@@ -12,7 +12,7 @@ use feature qw(say);
 my $numargs = $#ARGV + 1;
 
 sub usage {
-    say "Pass a search term. All lines in the journal will be matched and URLs quoted will be extracted.";
+    say "Pass a search term or -all. All lines in the journal will be matched and URLs quoted will be extracted, or -all will do all URLs..";
     exit;
 }
 
@@ -23,16 +23,23 @@ if ($numargs != 1) {
 
 my @targetlines;
 my $searchterm = $ARGV[0];
+
 my @urls;
 
 my $dir = '/home/lemon/Notes/journal';
+
 foreach my $f (glob("$dir/*.md")) {
     # printf "%s\n", $f;
     open my $fh, "<", $f or die "Cannot open that file '$f': $OS_ERROR";
     while (<$fh>) {
-        if ($_ =~ m/$searchterm/) {
-            # printf "  %s", $_;
-            push @targetlines, $_; 
+        if ($searchterm eq "-all") {
+            push @targetlines, $_;
+        }
+        else {
+            if ($_ =~ m/$searchterm/) {
+                # printf "  %s", $_;
+                push @targetlines, $_; 
+            }
         }
     }
     close $fh or die "can't read close file '$f': $OS_ERROR";
@@ -55,15 +62,6 @@ foreach my $line (@targetlines) {
         my$t = $1;
         $t =~ s/\.$//; # remove the fullstop if it has one at the end
         push @urls => striptime($t)
-        # my $req = HTTP::Request->new(GET => $t);
-        # $req->header(Accept => "text/html");
-        # my $res = $ua->request($req);
-        # my $p = HTML::HeadParser->new;
-        # $p->parse($res->content) and print "not finished";
-        # print $p->header('Title'), "\n";
-        # my $root = HTML::TreeBuilder->new_from_content($res->content);
-        # my $title = $root->look_down('_tag' => 'title');
-        # my $value = $title->attr('value');
     }
 }
 
@@ -87,33 +85,3 @@ foreach my $url (@uniqueurls) {
         my $title = $p->header('Title');
         print create_mdlink($url, $title), "\n";
 }
-
-
-
-# foreach my $url (@urls) {
-#     print $url;
-#     my $req = HTTP::Request->new(GET => $url);
-#     $req->header(Accept => "text/html");
-#     my $res = $ua->request($req);
-
-#     my $root = HTML::TreeBuilder->new_from_content($req->content);
-
-#     print $root;
-#     # my @elements = $root->look_down(_tag => "title");
-#     # foreach my $thing (@elements) {
-#     #     print $thing->as_text, "\n";
-#     # }
-# }
-
-
-
-
-
-
-# if ($res->is_success) {
-#     $tree->parse($res->as_string);
-# }
-# else {
-#     print $res->status_line, "\n";
-# }
-
