@@ -10,5 +10,5 @@ chomp $line;
 
 if ($line =~ m/(http.*)/) {
     print $1;
-    system('qutebrowser', $1);
+    # system('qutebrowser', $1);
 }
