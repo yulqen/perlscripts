@@ -7,6 +7,8 @@ use HTML::TreeBuilder 5 -weak;
 use HTML::HeadParser;
 use feature qw(say);
 
+$| = 1; # turn on autoflush for stdout (https://stackoverflow.com/questions/40608986/print-doesnt-work-while-iterations-are-going-inside-foreach-loop)
+
 # How to read each file in a directory $dir
 
 my $numargs = $#ARGV + 1;
@@ -72,16 +74,26 @@ my @uniqueurls = keys %riddups;
 
 sub create_mdlink {
     my ($url, $title) = @_;
+    if ($title eq "") {
+        $title = "- UKNOWN TITLE -";
+    }
+    
     return "[".$title."]"."(".$url.")"
 
 }
 
+my @mdurls;
+
 foreach my $url (@uniqueurls) {
-        my $req = HTTP::Request->new(GET => $url);
-        $req->header(Accept => "text/html");
-        my $res = $ua->request($req);
-        my $p = HTML::HeadParser->new;
-        $p->parse($res->content) and print "not finished";
-        my $title = $p->header('Title');
-        print create_mdlink($url, $title), "\n";
+    my $req = HTTP::Request->new(GET => $url);
+    $req->header(Accept => "text/html");
+    my $res = $ua->request($req);
+    my $p = HTML::HeadParser->new;
+    $p->parse($res->content) and print "not finished";
+    my $title = $p->header('Title');
+    push @mdurls => create_mdlink($url, $title);
 }
+
+$, = "\n\n- ";
+print "\n\n";
+print @mdurls;
