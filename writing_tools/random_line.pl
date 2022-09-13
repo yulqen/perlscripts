@@ -37,6 +37,13 @@ foreach my $f (glob("$dir/*.md")) {
     }
     close $fh or die "can't read close file '$f': $OS_ERROR";
 }
+
+sub striptime {
+    my $url = shift;
+    $url =~ s/\?t=\d*//;
+    return $url;
+}
+
 #
 # Let's interact with the World Wide Web!
 my $ua = LWP::UserAgent->new;
@@ -47,19 +54,31 @@ foreach my $line (@targetlines) {
     if ($line =~ m/$RE{URI}{HTTP}{-scheme => qr<https?>}{-keep}/) {
         my$t = $1;
         $t =~ s/\.$//; # remove the fullstop if it has one at the end
-        # print "Saving: $t\n";
-        # push @urls => $t
-        my $req = HTTP::Request->new(GET => $t);
-        $req->header(Accept => "text/html");
-        my $res = $ua->request($req);
-        my $p = HTML::HeadParser->new;
-        $p->parse($res->content) and print "not finished";
-        print $p->header('Title'), "\n";
+        push @urls => striptime($t)
+        # my $req = HTTP::Request->new(GET => $t);
+        # $req->header(Accept => "text/html");
+        # my $res = $ua->request($req);
+        # my $p = HTML::HeadParser->new;
+        # $p->parse($res->content) and print "not finished";
+        # print $p->header('Title'), "\n";
         # my $root = HTML::TreeBuilder->new_from_content($res->content);
         # my $title = $root->look_down('_tag' => 'title');
         # my $value = $title->attr('value');
     }
 }
+
+
+foreach my $url (@urls) {
+        print "URL: $url\n";
+        my $req = HTTP::Request->new(GET => $url);
+        $req->header(Accept => "text/html");
+        my $res = $ua->request($req);
+        my $p = HTML::HeadParser->new;
+        $p->parse($res->content) and print "not finished";
+        print "TITLE:",  $p->header('Title'), "\n";
+        print "\n";
+}
+
 
 
 # foreach my $url (@urls) {
