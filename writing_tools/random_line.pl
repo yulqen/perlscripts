@@ -67,16 +67,25 @@ foreach my $line (@targetlines) {
     }
 }
 
+# get rid of duplicates from array or urls
+# see perlfaq4
+my %riddups = map { $_, 1 } @urls;
+my @uniqueurls = keys %riddups;
 
-foreach my $url (@urls) {
-        print "URL: $url\n";
+sub create_mdlink {
+    my ($url, $title) = @_;
+    return "[".$title."]"."(".$url.")"
+
+}
+
+foreach my $url (@uniqueurls) {
         my $req = HTTP::Request->new(GET => $url);
         $req->header(Accept => "text/html");
         my $res = $ua->request($req);
         my $p = HTML::HeadParser->new;
         $p->parse($res->content) and print "not finished";
-        print "TITLE:",  $p->header('Title'), "\n";
-        print "\n";
+        my $title = $p->header('Title');
+        print create_mdlink($url, $title), "\n";
 }
 
 
