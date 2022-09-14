@@ -5,27 +5,29 @@ use warnings;
 use DateTime;
 
 
-my $numargs = $#ARGV + 1;
-my $fp = "/tmp";
 my @quicknotes;
-
+my @qfiles;
 my ($dt, $d, $y, $m, $weekday);
 
 my @weekdays = qw(Monday Tuesday Wednesday Thursday Friday Saturday Sunday);
-
 my $dayplans = '/home/lemon/Notes/journal/day_plans';
+my $numargs  = $#ARGV + 1;
+my $fp       = "/tmp";
+
 
 # Go back and get short notes from past files
 foreach my $f (glob("$dayplans/*.txt")) {
     open my $fh, "<", $f or die "Cannot open that file";
     while (<$fh>) {
-        if ($_ =~ /^- /) { push @quicknotes => $_ };
+        if ($_ =~ /^- /) { 
+            push @quicknotes => $_;
+            push @qfiles => "$f\n";
+        };
+
     }
 }
 my %riddups = map { $_, 1 } @quicknotes;
 @quicknotes = keys %riddups;
-print @quicknotes;
-exit;
 
 if ($numargs == 1) {
     ($y, $m, $d) = $ARGV[0] =~ /(\d\d\d\d)-(\d\d)-(\d\d)/;
@@ -46,7 +48,6 @@ else {
 
 sub schoollines {
     my $day = shift;
-    print "In schoolines\n";
     if ($day =~ /Saturday|Sunday/) {
         return "";
     } else
@@ -66,6 +67,10 @@ my $s = schoollines($weekday);
 
 my $template = "Goal for $weekday: [replace this with your goal]
 ---
+
+@quicknotes
+from:
+@qfiles
 
 Reminders:
 ---------
