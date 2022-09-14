@@ -30,10 +30,14 @@ else {
 }
 
 my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
+$reminders =~ s/\s{2,}/\n/gs;
+$reminders =~ s/^Reminders.+\:\n//;
 
 my $template = "
 Goal for $weekday: [replace this with your goal]
 ---
+
+Reminders:
 
 $reminders
 
