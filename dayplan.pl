@@ -19,15 +19,18 @@ my $fp       = "/tmp";
 foreach my $f (glob("$dayplans/*.txt")) {
     open my $fh, "<", $f or die "Cannot open that file";
     while (<$fh>) {
-        if ($_ =~ /^- /) { 
-            push @quicknotes => $_;
+        if ($_ =~ /^(- \w.*)$/) { 
+            push @quicknotes => "$1\n";
             push @qfiles => "$f\n";
         };
 
     }
 }
-my %riddups = map { $_, 1 } @quicknotes;
+# deduplicate stuff
+my %riddups = map { $_, "" } @quicknotes;
 @quicknotes = keys %riddups;
+my %riddfiles = map { $_, "" } @qfiles;
+@qfiles = keys %riddfiles;
 
 if ($numargs == 1) {
     ($y, $m, $d) = $ARGV[0] =~ /(\d\d\d\d)-(\d\d)-(\d\d)/;
@@ -65,6 +68,7 @@ $reminders =~ s/^Reminders.+\:\n//;
 
 my $s = schoollines($weekday);
 
+$" = "";
 my $template = "Goal for $weekday: [replace this with your goal]
 ---
 
