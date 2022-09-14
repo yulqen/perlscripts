@@ -7,7 +7,7 @@ use HTML::TreeBuilder 5 -weak;
 use HTML::HeadParser;
 use feature qw(say);
 
-$| = 1; # turn on autoflush for stdout (https://stackoverflow.com/questions/40608986/print-doesnt-work-while-iterations-are-going-inside-foreach-loop)
+# $| = 1; # turn on autoflush for stdout (https://stackoverflow.com/questions/40608986/print-doesnt-work-while-iterations-are-going-inside-foreach-loop)
 
 # How to read each file in a directory $dir
 
