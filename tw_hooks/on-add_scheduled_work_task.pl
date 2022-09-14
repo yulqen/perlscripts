@@ -79,15 +79,15 @@ my $tags = ${$decoded_task}{tags};     # alternative - not using -> in the ref
 my $scheduled_dt;
 
 if ( $decoded_task->{scheduled} and ( scalar grep { $_ eq "dft" } @{$tags} ) ) {
-    $scheduled_dt = parse_scheduled $decoded_task->{scheduled};
+    $scheduled_dt   = parse_scheduled $decoded_task->{scheduled};
     # my @test_task = `task add Bobbins from Perl`;
-    my $port  = 22;
-    my $date  = $scheduled_dt->day();
-    my $month = $short_months[ $scheduled_dt->month() - 1 ];
-    my $year  = $scheduled_dt->year();
-    my $hr    = $scheduled_dt->hour();
-    my $min   = $scheduled_dt->minute();
-    my $time  = substr $scheduled_dt->hms(), 0,
+    my $port        = 22;
+    my $date        = $scheduled_dt->day();
+    my $month       = $short_months[ $scheduled_dt->month() - 1 ];
+    my $year        = $scheduled_dt->year();
+    my $hr          = $scheduled_dt->hour();
+    my $min         = $scheduled_dt->minute();
+    my $time        = substr $scheduled_dt->hms(), 0,
       5;    # we do not want seconds in the time format
         # Convert it into Remind format with %" bits that mean you don't get the
         # shit in wyrd
