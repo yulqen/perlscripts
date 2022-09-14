@@ -19,15 +19,14 @@ if ($numargs == 1) {
         month => $m,
         day   => $d
     );
-    $weekday = $weekdays[$dt->day_of_week];
-    # print "year: $y, month: $m, day: $d, day of week: $weekday", "\n";
+    $weekday = $weekdays[$dt->day_of_week - 1];
 }
 else {
     $dt      = DateTime->now;
     $d       = $dt->day;
     $m       = $dt->month;
     $y       = $dt->year;
-    $weekday = $weekdays[$dt->day_of_week];
+    $weekday = $weekdays[$dt->day_of_week - 1];
 }
 
 my $template = "
@@ -48,6 +47,7 @@ Goal for $weekday: [replace this with your goal]
 ";
 
 my $today_planner = sprintf("%s/%d-%02d-%02d.txt", $fp,$y,$m,$d);
+
 if (-e $today_planner) {
     exec("vim",  "$today_planner");
 } else
@@ -57,5 +57,3 @@ if (-e $today_planner) {
     close FH;
     exec("vim",  "$today_planner");
 }
-
-
