@@ -7,10 +7,25 @@ use DateTime;
 
 my $numargs = $#ARGV + 1;
 my $fp = "/tmp";
+my @quicknotes;
 
 my ($dt, $d, $y, $m, $weekday);
 
 my @weekdays = qw(Monday Tuesday Wednesday Thursday Friday Saturday Sunday);
+
+my $dayplans = '/home/lemon/Notes/journal/day_plans';
+
+# Go back and get short notes from past files
+foreach my $f (glob("$dayplans/*.txt")) {
+    open my $fh, "<", $f or die "Cannot open that file";
+    while (<$fh>) {
+        if ($_ =~ /^- /) { push @quicknotes => $_ };
+    }
+}
+my %riddups = map { $_, 1 } @quicknotes;
+@quicknotes = keys %riddups;
+print @quicknotes;
+exit;
 
 if ($numargs == 1) {
     ($y, $m, $d) = $ARGV[0] =~ /(\d\d\d\d)-(\d\d)-(\d\d)/;
