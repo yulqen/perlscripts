@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+no warnings 'utf8'; # prevent the wide character warning you get on STDOUT
 use English;
 use Regexp::Common qw(URI);
 use LWP::UserAgent;
