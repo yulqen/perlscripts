@@ -12,7 +12,6 @@ my ($dt, $d, $y, $m, $weekday);
 my @weekdays = qw(Monday Tuesday Wednesday Thursday Friday Saturday Sunday);
 my $dayplans = '/home/lemon/Notes/journal/day_plans';
 my $numargs  = $#ARGV + 1;
-my $fp       = "/tmp";
 
 
 # Go back and get short notes from past files
@@ -69,13 +68,20 @@ $reminders =~ s/^Reminders.+\:\n//;
 my $s = schoollines($weekday);
 
 $" = "";
+
+my $qnote_block;
+if (scalar @quicknotes == 0) {
+    $qnote_block = "No quicknotes today.\n";
+} else
+{
+    $qnote_block = "@quicknotes"."from:"."\n"."@qfiles";
+}
+
+
 my $template = "Goal for $weekday: [replace this with your goal]
 ---
 
-@quicknotes
-from:
-@qfiles
-
+$qnote_block
 Reminders:
 ---------
 $reminders
@@ -90,7 +96,7 @@ $s
 16:00 - 17:00 -
 ";
 
-my $today_planner = sprintf("%s/%d-%02d-%02d.txt", $fp,$y,$m,$d);
+my $today_planner = sprintf("%s/%d-%02d-%02d.txt", $dayplans,$y,$m,$d);
 
 if (-e $today_planner) {
     exec("vim",  "$today_planner");
