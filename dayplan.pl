@@ -29,21 +29,33 @@ else {
     $weekday = $weekdays[$dt->day_of_week - 1];
 }
 
+sub schoollines {
+    my $day = shift;
+    print "In schoolines\n";
+    if ($day =~ /Saturday|Sunday/) {
+        return "";
+    } else
+    {
+        return "
+08:15 - 08:20 - Harvey to school
+08:45 - 09:00 - Sophie to school
+09:15 - 09:30 - Email";
+    }
+}
+
 my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
 $reminders =~ s/\s{2,}/\n/gs;
 $reminders =~ s/^Reminders.+\:\n//;
 
-my $template = "
-Goal for $weekday: [replace this with your goal]
+my $s = schoollines($weekday);
+
+my $template = "Goal for $weekday: [replace this with your goal]
 ---
 
 Reminders:
-
+---------
 $reminders
-
-08:15 - 08:20 - Harvey to school
-08:45 - 09:00 - Sophie to school
-09:15 - 09:30 - Email 
+$s
 09:30 - 10:00 - 
 10:00 - 11:00 - 
 11:00 - 12:00 - 
