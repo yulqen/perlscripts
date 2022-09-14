@@ -29,9 +29,13 @@ else {
     $weekday = $weekdays[$dt->day_of_week - 1];
 }
 
+my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
+
 my $template = "
 Goal for $weekday: [replace this with your goal]
 ---
+
+$reminders
 
 08:15 - 08:20 - Harvey to school
 08:45 - 09:00 - Sophie to school
