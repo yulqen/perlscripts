@@ -79,7 +79,6 @@ if (scalar @quicknotes == 0) {
     $qnote_block = "@quicknotes"."from:"."\n"."@qfiles";
 }
 
-my $td = $dt->strftime('%Y-%m-%d');
 my $mname = $dt->month_name;
 my $template = "Goal for $weekday $d $mname $y: [replace this with your goal]
 ---
@@ -109,7 +108,7 @@ if (-e $today_planner) {
     print FH $template;
     my $today = DateTime->today;
     if ($today != $dt) {
-        printf (FH "\nNOTE: This dayplan was generated in advance on %d-%02d-%d. Reminders and quicknotes may not be up to date.", $today->year,  $today->month,  $today->day);
+        printf (FH "\nWARNING: This dayplan was generated in advance on %d-%02d-%d. Reminders and quicknotes may not be up to date.", $today->year,  $today->month,  $today->day);
     }
     
     close FH;
