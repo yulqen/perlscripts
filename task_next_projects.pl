@@ -9,7 +9,7 @@ sub pending_work {
     my $tw = qx(task project:w status:pending export);
     my $text = $json->decode( $tw );
     foreach my $h (@{$text}) {
-        printf ("%s: %s\n", ${$h}{'uuid'}, ${$h}{'description'});
+        printf ("%-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
     }
 }
 
@@ -17,9 +17,10 @@ sub pending_home {
     my $tw = qx(task project:h status:pending export);
     my $text = $json->decode( $tw );
     foreach my $h (@{$text}) {
-        printf ("%s: %s\n", ${$h}{'uuid'}, ${$h}{'description'});
+        printf ("%-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
     }
 }
+
 
 print "Work:\n-----\n";
 pending_work();
