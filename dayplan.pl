@@ -11,8 +11,8 @@ my @qfiles;
 my ($dt, $d, $y, $m, $weekday);
 
 my @weekdays = qw(Monday Tuesday Wednesday Thursday Friday Saturday Sunday);
-#my $dayplans = '/home/lemon/Notes/journal/day_plans';
-my $dayplans = '/tmp';
+my $dayplans = '/home/lemon/Notes/journal/day_plans';
+#my $dayplans = '/tmp';
 my $numargs  = $#ARGV + 1;
 
 
