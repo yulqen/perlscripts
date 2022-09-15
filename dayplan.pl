@@ -11,8 +11,8 @@ my @qfiles;
 my ($dt, $d, $y, $m, $weekday);
 
 my @weekdays = qw(Monday Tuesday Wednesday Thursday Friday Saturday Sunday);
-my $dayplans = '/home/lemon/Notes/journal/day_plans';
-#my $dayplans = '/tmp';
+#my $dayplans = '/home/lemon/Notes/journal/day_plans';
+my $dayplans = '/tmp';
 my $numargs  = $#ARGV + 1;
 
 
@@ -98,13 +98,10 @@ $s
 16:00 - 17:00 -
 ";
 
-my $today_planner = sprintf("%s/%d-%02d-%02d.txt", $dayplans,$y,$m,$d);
+sub write_file {
+    my $f = shift;
 
-if (-e $today_planner) {
-    exec("vim",  "$today_planner");
-} else
-{
-    open( FH, ">$today_planner");
+    open( FH, ">$f");
     print FH $template;
     my $today = DateTime->today;
     if ($today != $dt) {
@@ -112,5 +109,14 @@ if (-e $today_planner) {
     }
     
     close FH;
+    exec("vim", "$f");
+}
+
+my $today_planner = sprintf("%s/%d-%02d-%02d.txt", $dayplans,$y,$m,$d);
+
+if (-e $today_planner) {
     exec("vim",  "$today_planner");
+} else
+{
+    write_file($today_planner)
 }
