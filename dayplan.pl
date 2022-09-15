@@ -12,6 +12,7 @@ my ($dt, $d, $y, $m, $weekday);
 
 my @weekdays = qw(Monday Tuesday Wednesday Thursday Friday Saturday Sunday);
 my $dayplans = '/home/lemon/Notes/journal/day_plans';
+#my $dayplans = '/tmp';
 my $numargs  = $#ARGV + 1;
 
 
@@ -42,7 +43,7 @@ if ($numargs == 1) {
     $weekday = $weekdays[$dt->day_of_week - 1];
 }
 else {
-    $dt      = DateTime->now;
+    $dt      = DateTime->today;
     $d       = $dt->day;
     $m       = $dt->month;
     $y       = $dt->year;
@@ -78,8 +79,9 @@ if (scalar @quicknotes == 0) {
     $qnote_block = "@quicknotes"."from:"."\n"."@qfiles";
 }
 
-
-my $template = "Goal for $weekday: [replace this with your goal]
+my $td = $dt->strftime('%Y-%m-%d');
+my $mname = $dt->month_name;
+my $template = "Goal for $weekday $d $mname $y: [replace this with your goal]
 ---
 
 $qnote_block
@@ -105,6 +107,11 @@ if (-e $today_planner) {
 {
     open( FH, ">$today_planner");
     print FH $template;
+    my $today = DateTime->today;
+    if ($today != $dt) {
+        printf (FH "\nNOTE: This dayplan was generated in advance on %d-%02d-%d. Reminders and quicknotes may not be up to date.", $today->year,  $today->month,  $today->day);
+    }
+    
     close FH;
     exec("vim",  "$today_planner");
 }
