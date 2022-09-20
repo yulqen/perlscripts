@@ -22,7 +22,7 @@ if ($ARGV[0] eq "-h") {
     $rfile = "~/.reminders/home.rem";
     say "Using home.rem."
 } elsif ($ARGV[0] eq "-w") {
-    $rfile = "~/.reminders/home.rem";
+    $rfile = "~/.reminders/work.rem";
     say "Using work.rem."
 }
 
