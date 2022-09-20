@@ -68,9 +68,5 @@ my $remfile = "~/.reminders/work.rem";
 my ($host, $user) = check_env();
 my $ssh = get_connection($host, 2222, $user);
 check_remind_file_exists($ssh, $host, $remfile );
-append_to_remfile($ssh, $host, $remfile, 'REM 16 Sept 2022 AT 11:11 MSG TEST2 %1');
+append_to_remfile($ssh, $host, $remfile, "$ARGV[0]\n");
 exit;
-
-
-
-
