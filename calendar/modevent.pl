@@ -8,6 +8,24 @@ use DateTime;
 use DateTime::Format::ISO8601;
 use Net::OpenSSH;
 
+my $rfile;
+
+unless ($ARGV[0] =~ /^-h/ || $ARGV[0] =~ /^-w/) {
+    say q(You must indicate either -h for home.rem or -w for work.rem.); exit;
+    }
+
+unless ($ARGV[1] =~ /^REM/) {
+    say q(Your message must start with REM. Format is REM DATE AT TIME MSG Message - any traditional remind format.); exit;
+}
+
+if ($ARGV[0] eq "-h") {
+    $rfile = "~/.reminders/home.rem";
+    say "Using home.rem."
+} elsif ($ARGV[0] eq "-w") {
+    $rfile = "~/.reminders/home.rem";
+    say "Using work.rem."
+}
+
 sub check_env {
     # Log into remote server
     my $host = $ENV{"TW_HOOK_REMIND_REMOTE_HOST"}
@@ -50,6 +68,16 @@ sub append_to_remfile {
     my $host    = shift;
     my $remfile = shift;
     my $remline = shift;
+
+    if ($remline =~ /\sAT\s/) {
+        chomp $remline;
+        $remline = $remline . " %3\n";
+    } else
+    {
+        chomp $remline;
+        $remline = $remline . " %b\n";
+    }
+    
      
     # Append the Remind formatted line to the original remind file
     $ssh->system( { stdin_data => $remline }, "cat >> $remfile" )
@@ -64,9 +92,8 @@ sub append_to_remfile {
 Contents of $remfile on $host is now:\n/, @out_file;
 }
 
-my $remfile = "~/.reminders/work.rem";
 my ($host, $user) = check_env();
 my $ssh = get_connection($host, 2222, $user);
-check_remind_file_exists($ssh, $host, $remfile );
-append_to_remfile($ssh, $host, $remfile, "$ARGV[0]\n");
+check_remind_file_exists($ssh, $host, $rfile);
+append_to_remfile($ssh, $host, $rfile, "$ARGV[1]\n");
 exit;
