@@ -113,6 +113,8 @@ sub remindersblock {
     my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
     $reminders =~ s/\s{2,}/\n/gs;
     $reminders =~ s/^Reminders.+\:\n//;
+    $reminders =~ s/^/\* /gs;
+    $reminders =~ s/\n/\n\* /gs;
     my $rheader = "\n# Reminders:\n";
     return $rheader . $reminders;
 }
