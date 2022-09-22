@@ -5,7 +5,8 @@ use strict;
 use warnings;
 use DateTime;
 
-my $dayplans = '/home/lemon/Notes/journal/day_plans';
+# my $dayplans = '/home/lemon/Notes/journal/day_plans';
+my $dayplans = "/tmp";
 
 sub parse_args {
     my $numargs  = $#ARGV + 1;
@@ -52,6 +53,31 @@ sub get_quicknotes_and_quickfiles {
     return (\@quicknotes, \@qfiles);
 }
 
+sub headerblock {
+    my $dt      = shift;
+    my $d       = shift;
+    my $y       = shift;
+    my $weekday = shift;
+    my $mname   = $dt->month_name;
+    return "Goal for $weekday $d $mname $y: [replace this with your goal]
+---\n
+";
+}
+
+sub qnoteblock {
+    $" = "";
+    my $quicknotes_ref =shift;
+    my $qfiles_ref = shift;
+    my $qnote_block;
+
+    if (scalar @{$quicknotes_ref} == 0) {
+        $qnote_block = "No quicknotes today.\n";
+    } else
+        {
+            $qnote_block = "@{$quicknotes_ref}"."from:"."\n"."@{$qfiles_ref}";
+        }
+        return $qnote_block;
+}
 
 sub schoolblock {
     my $day = shift;
@@ -66,40 +92,63 @@ sub schoolblock {
     }
 }
 
-sub quoteblock {
-    $" = "";
-    my $quicknotes_ref =shift;
-    my $qfiles_ref = shift;
-    my $qnote_block;
-
-    if (scalar @{$quicknotes_ref} == 0) {
-        $qnote_block = "No quicknotes today.\n";
-    } else
-        {
-            $qnote_block = "@{$quicknotes_ref}"."from:"."\n"."@{$qfiles_ref}";
-        }
-        return $qnote_block;
-    }
-
-sub headerblock {
-    my $dt      = shift;
-    my $d       = shift;
-    my $y       = shift;
-    my $weekday = shift;
-    my $mname   = $dt->month_name;
-    return "Goal for $weekday $d $mname $y: [replace this with your goal]
----
-";
-}
-
-sub get_reminders_from_server {
+sub remindersblock {
     my ($y, $m, $d) = @_;
     my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
     $reminders =~ s/\s{2,}/\n/gs;
     $reminders =~ s/^Reminders.+\:\n//;
-    return $reminders;
+    my $rheader = "\nReminders:\n----------\n";
+    return $rheader . $reminders;
+}
+
+sub timeblock {
+    return "
+09:30 - 10:00 - 
+10:00 - 11:00 - 
+11:00 - 12:00 - 
+12:15 - 13:00 - Lunch
+13:00 - 14:00 - 
+14:00 - 15:00 -
+15:00 - 16:00 - 
+16:00 - 17:00 -
+";
+}
+
+sub generate_text {
+    my ($quicknotes_ref, $qfiles_ref) = get_quicknotes_and_quickfiles();
+    return
+        headerblock($date, $day, $year, $weekday),
+        qnoteblock($quicknotes_ref, $qfiles_ref),
+        remindersblock($year, $month, $day),
+        schoolblock($day),
+        timeblock;
 }
 
 
-my ($quicknotes_ref, $qfiles_ref) = get_quicknotes_and_quickfiles();
-print headerblock($date, $day, $year, $weekday);
+sub write_file {
+    my $f  = shift;
+    my $dt = shift;
+
+    open( FH, ">$f");
+    print FH generate_text;
+    my $today = DateTime->today;
+    if ($today != $dt) {
+        printf (FH "\nWARNING: This dayplan was generated in advance on %d-%02d-%d. Reminders and quicknotes may not be up to date.", $today->year,  $today->month,  $today->day);
+    }
+    
+    close FH;
+    exec("vim", "$f");
+}
+
+sub main {
+    my $today_planner = sprintf("%s/%d-%02d-%02d.txt", $dayplans, $year ,$month, $day);
+
+    if (-e $today_planner) {
+        exec("vim",  "$today_planner");
+    } else
+    {
+        write_file($today_planner, $date);
+    }
+}
+
+main();
