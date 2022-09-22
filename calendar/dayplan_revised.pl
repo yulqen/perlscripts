@@ -6,8 +6,8 @@ use warnings;
 use DateTime;
 use JSON;
 
-# my $dayplans = '/home/lemon/Notes/journal/day_plans';
-my $dayplans = "/tmp/dayplans";
+my $dayplans = '/home/lemon/Notes/journal/day_plans';
+#my $dayplans = "/tmp/dayplans";
 
 sub parse_args {
     my $numargs  = $#ARGV + 1;
