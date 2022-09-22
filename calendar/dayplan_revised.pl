@@ -7,7 +7,7 @@ use DateTime;
 use JSON;
 
 # my $dayplans = '/home/lemon/Notes/journal/day_plans';
-my $dayplans = "/tmp";
+my $dayplans = "/tmp/dayplans";
 
 sub parse_args {
     my $numargs  = $#ARGV + 1;
@@ -38,11 +38,11 @@ my ($date, $day, $month, $year, $weekday) = parse_args();
 sub get_quicknotes_and_quickfiles {
     my @quicknotes;
     my @qfiles;
-    foreach my $f (glob("$dayplans/*.txt")) {
-        open my $fh, "<", $f or die "Cannot open that file";
+    foreach my $f (glob("$dayplans/*")) {
+        open my $fh, "<", $f or die "Cannot open f";
         while (<$fh>) {
-            if ($_ =~ /^(- \w.*)$/) { 
-                push @quicknotes => "$1\n";
+            if ($_ =~ /^- (\w.*)$/) { 
+                push @quicknotes => "- $1\n";
                 push @qfiles => "$f\n";
             };
         }
@@ -60,8 +60,7 @@ sub headerblock {
     my $y       = shift;
     my $weekday = shift;
     my $mname   = $dt->month_name;
-    return "Goal for $weekday $d $mname $y: [replace this with your goal]
----\n
+    return "# $weekday $d $mname $y\n
 ";
 }
 
@@ -72,10 +71,10 @@ sub qnoteblock {
     my $qnote_block;
 
     if (scalar @{$quicknotes_ref} == 0) {
-        $qnote_block = "No quicknotes today.\n";
+        $qnote_block = "# Quicknotes:\nNo quicknotes today.\n";
     } else
         {
-            unshift @$quicknotes_ref, "Quicknotes:\n-----------\n";
+            unshift @$quicknotes_ref, "# Quicknotes:\n";
             $qnote_block = "@{$quicknotes_ref}"."from:"."\n"."@{$qfiles_ref}";
         }
     return $qnote_block;
@@ -89,8 +88,8 @@ sub schoolblock {
     {
         return "
 08:15 - 08:20 - Harvey to school
-08:45 - 09:00 - Sophie to school
-09:15 - 09:30 - Email";
+08:45 - 09:00 - Sophie to school 
+09:15 - 09:30 - Email ";
     }
 }
 
@@ -101,9 +100,9 @@ sub twblock {
     my $tw= qx(task project:$project status:pending $type:$y-$m-$d export);
     my $text = $json->decode( $tw );
     my @output;
-    push @output, "Taskwarrior $type - $project:\n-----------------------\n";
+    push @output, "# Taskwarrior $type - $project:\n";
     foreach my $h (@{$text}) {
-        push @output, sprintf ("%-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
+        push @output, sprintf ("* %-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
     }
     push @output, "\n";
     return @output;
@@ -114,7 +113,7 @@ sub remindersblock {
     my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
     $reminders =~ s/\s{2,}/\n/gs;
     $reminders =~ s/^Reminders.+\:\n//;
-    my $rheader = "\nReminders:\n----------\n";
+    my $rheader = "\n# Reminders:\n";
     return $rheader . $reminders;
 }
 
@@ -123,11 +122,11 @@ sub timeblock {
 09:30 - 10:00 - 
 10:00 - 11:00 - 
 11:00 - 12:00 - 
-12:15 - 13:00 - Lunch
+12:15 - 13:00 - Lunch 
 13:00 - 14:00 - 
-14:00 - 15:00 -
+14:00 - 15:00 - 
 15:00 - 16:00 - 
-16:00 - 17:00 -
+16:00 - 17:00 - 
 ";
 }
 
@@ -162,7 +161,7 @@ sub write_file {
 }
 
 sub main {
-    my $today_planner = sprintf("%s/%d-%02d-%02d.txt", $dayplans, $year ,$month, $day);
+    my $today_planner = sprintf("%s/%d-%02d-%02d.md", $dayplans, $year ,$month, $day);
 
     if (-e $today_planner) {
         exec("vim",  "$today_planner");
