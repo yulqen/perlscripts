@@ -4,6 +4,7 @@
 use strict;
 use warnings;
 use DateTime;
+use JSON;
 
 # my $dayplans = '/home/lemon/Notes/journal/day_plans';
 my $dayplans = "/tmp";
@@ -74,9 +75,10 @@ sub qnoteblock {
         $qnote_block = "No quicknotes today.\n";
     } else
         {
+            unshift @$quicknotes_ref, "Quicknotes:\n-----------\n";
             $qnote_block = "@{$quicknotes_ref}"."from:"."\n"."@{$qfiles_ref}";
         }
-        return $qnote_block;
+    return $qnote_block;
 }
 
 sub schoolblock {
@@ -90,6 +92,21 @@ sub schoolblock {
 08:45 - 09:00 - Sophie to school
 09:15 - 09:30 - Email";
     }
+}
+
+sub twblock {
+    my ($y, $m, $d, $project, $type) = @_;
+    $m = sprintf("%02d", $m);
+    my $json = JSON->new->allow_nonref;
+    my $tw= qx(task project:$project status:pending $type:$y-$m-$d export);
+    my $text = $json->decode( $tw );
+    my @output;
+    push @output, "Taskwarrior $type - $project:\n-----------------------\n";
+    foreach my $h (@{$text}) {
+        push @output, sprintf ("%-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
+    }
+    push @output, "\n";
+    return @output;
 }
 
 sub remindersblock {
@@ -118,6 +135,10 @@ sub generate_text {
     my ($quicknotes_ref, $qfiles_ref) = get_quicknotes_and_quickfiles();
     return
         headerblock($date, $day, $year, $weekday),
+        twblock($year, $month, $day, "w", "sched"),
+        twblock($year, $month, $day, "h", "sched"),
+        twblock($year, $month, $day, "w", "due"),
+        twblock($year, $month, $day, "h", "due"),
         qnoteblock($quicknotes_ref, $qfiles_ref),
         remindersblock($year, $month, $day),
         schoolblock($day),

@@ -21,10 +21,30 @@ sub pending_home {
     }
 }
 
+sub sched_today_work {
+    my $tw = qx(task project:w status:pending sched:today export);
+    my $text = $json->decode( $tw );
+    foreach my $h (@{$text}) {
+        printf ("%-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
+    }
+}
+
+sub due_today_work {
+    my $tw = qx(task project:w status:pending due:today export);
+    my $text = $json->decode( $tw );
+    foreach my $h (@{$text}) {
+        printf ("%-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
+    }
+}
+
+print "Work Due Today:\n-----\n";
+due_today_work();
+
+print "Work Sched Today:\n-----\n";
+sched_today_work();
 
 print "Work:\n-----\n";
 pending_work();
-
 
 print "\nHome:\n-----\n";
 pending_home();
