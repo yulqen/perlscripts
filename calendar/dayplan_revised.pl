@@ -71,10 +71,10 @@ sub qnoteblock {
     my $qnote_block;
 
     if (scalar @{$quicknotes_ref} == 0) {
-        $qnote_block = "# Quicknotes:\nNo quicknotes today.\n";
+        $qnote_block = "## Quicknotes:\nNo quicknotes today.\n";
     } else
         {
-            unshift @$quicknotes_ref, "# Quicknotes:\n";
+            unshift @$quicknotes_ref, "## Quicknotes:\n";
             $qnote_block = "@{$quicknotes_ref}"."from:"."\n"."@{$qfiles_ref}";
         }
     return $qnote_block;
@@ -100,7 +100,7 @@ sub twblock {
     my $tw= qx(task project:$project status:pending $type:$y-$m-$d export);
     my $text = $json->decode( $tw );
     my @output;
-    push @output, "# Taskwarrior $type - $project:\n";
+    push @output, "## Taskwarrior $type - $project:\n";
     foreach my $h (@{$text}) {
         push @output, sprintf ("* %-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
     }
@@ -113,10 +113,14 @@ sub remindersblock {
     my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
     $reminders =~ s/\s{2,}/\n/gs;
     $reminders =~ s/^Reminders.+\:\n//;
-    $reminders =~ s/^/\* /gs;
-    $reminders =~ s/\n/\n\* /gs;
-    my $rheader = "\n# Reminders:\n";
-    return $rheader . $reminders;
+    my @rems = split /\n/, $reminders;
+    my @out_rems;
+    foreach my $r (@rems) {
+        my $s = sprintf("* %s\n", $r);
+        push @out_rems, $s;
+    }
+    unshift @out_rems, "\n## Reminders:\n";
+    return @out_rems;
 }
 
 sub timeblock {
