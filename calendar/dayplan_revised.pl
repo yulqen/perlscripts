@@ -41,7 +41,7 @@ sub get_quicknotes_and_quickfiles {
     foreach my $f (glob("$dayplans/*")) {
         open my $fh, "<", $f or die "Cannot open f";
         while (<$fh>) {
-            if ($_ =~ /^- (\w.*)$/) { 
+            if ($_ =~ /^- (.*)$/) { 
                 push @quicknotes => "- $1\n";
                 push @qfiles => "$f\n";
             };
