@@ -6,7 +6,7 @@ my @tags;
 foreach my $fn (glob "~/Notes/journal/*.md") {
     open my $FH, "<", $fn or die "Cannot open $fn";
     while (<$FH>) {
-        if (/(\s:[A-Z]\w+)/) {
+        while (/(\s:[A-Z]\w+)/g) {
             push @tags, $1;
         }
                 
