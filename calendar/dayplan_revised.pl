@@ -96,16 +96,24 @@ sub schoolblock {
 sub twblock {
     my ($y, $m, $d, $project, $type) = @_;
     $m = sprintf("%02d", $m);
+    $d = sprintf("%02d", $d);
     my $json = JSON->new->allow_nonref;
     my $tw= qx(task project:$project status:pending $type:$y-$m-$d export);
-    my $text = $json->decode( $tw );
     my @output;
     push @output, "## Taskwarrior $type - $project:\n";
-    foreach my $h (@{$text}) {
-        push @output, sprintf ("* %-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
+    if ($tw eq "") {
+        push @output, "* No tasks";
+        push @output, "\n";
+        return @output;
+    } else
+    {
+        my $text = $json->decode( $tw );
+        foreach my $h (@{$text}) {
+            push @output, sprintf ("* %-16s: %s\n", ${$h}{'project'}, ${$h}{'description'});
+        }
+        push @output, "\n";
+        return @output;
     }
-    push @output, "\n";
-    return @output;
 }
 
 sub remindersblock {
