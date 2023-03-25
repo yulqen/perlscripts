@@ -59,7 +59,7 @@ sub schoollines {
         return "
 08:15 - 08:20 - Harvey to school
 08:45 - 09:00 - Sophie to school
-09:15 - 09:30 - Email";
+";
     }
 }
 
@@ -88,6 +88,10 @@ Reminders:
 ---------
 $reminders
 $s
+Implementation Intentions:
+
+- I will X at HH:MM.
+
 09:30 - 10:00 - 
 10:00 - 11:00 - 
 11:00 - 12:00 - 

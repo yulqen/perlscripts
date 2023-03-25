@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/env -S perl
 # Porting dayplan.ksh to Perl
 
 use strict;
@@ -6,7 +6,7 @@ use warnings;
 use DateTime;
 use JSON;
 
-my $dayplans = '/home/lemon/Notes/journal/day_plans';
+my $dayplans = '/home/lemon/Documents/Notes/journal/day_plans';
 #my $dayplans = "/tmp/dayplans";
 
 sub parse_args {
