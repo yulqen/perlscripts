@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/env -S perl
 # Porting dayplan.ksh to Perl
 
 use strict;
