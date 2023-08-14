@@ -6,7 +6,7 @@ use warnings;
 use DateTime;
 use JSON;
 
-my $dayplans = '/home/lemon/Notes/journal/day_plans';
+my $dayplans = '/home/lemon/Documents/Notes/journal/day_plans';
 #my $dayplans = "/tmp/dayplans";
 
 sub parse_args {
@@ -87,9 +87,9 @@ sub schoolblock {
     } else
     {
         return "
-08:15 - 08:20 - Harvey to school
-08:45 - 09:00 - Sophie to school 
-09:15 - 09:30 - Email ";
+08:20 - Harvey to school
+08:40 - Sophie to school 
+09:00 - 09:00 - Misc ";
     }
 }
 
