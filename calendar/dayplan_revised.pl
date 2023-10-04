@@ -7,10 +7,12 @@ use DateTime;
 use JSON;
 use Archive::Tar;
 use IO::Zlib;
+use feature qw(say);
 
 sub search_in_tgz {
     my ($archive_file, $search_string) = @_;
     my $tar = Archive::Tar->new;
+    my @out;
     $tar->read($archive_file);
     # Iterate through the files in the archive in memory
     foreach my $file ($tar->get_files) {
@@ -25,12 +27,35 @@ sub search_in_tgz {
             my @lines = split(/\n/, $file_content);	
             foreach my $line (@lines) {
                 if ($line =~ /$search_string/) {
-                    print "File name: " . $file->name . ": " . $line . "\n";
+                    # print "File name: " . $file->name . ": " . $line . "\n";
+                    push(@out, $line);
                 }
             }
         }
     }
+    return @out;
 }
+
+sub this_day {
+    my ($month, $day) = @_;
+    my @out;
+    my $archive_path = "/home/lemon/Documents/Notes/journal/archives/journal_archive_aug23.tgz";
+    my $tar = Archive::Tar->new;
+    $tar->read($archive_path);
+    foreach my $file ($tar->get_files) {
+        if ($file->name =~ /\d\d\d\d-$month-$day.md/) {
+            my @lines = split(/\n/, $file->get_content);
+            foreach my $line (@lines) {
+                if ($line =~ /^- \d\d:\d\d/) {
+                    my $stripped = $file->name =~ s/\.md//r;
+                    push @out, $stripped . " " . $line . "\n";
+                }
+            }
+        }
+    }
+    return @out;
+}
+
 
 my $dayplans = '/home/lemon/Documents/Notes/journal/day_plans';
 #my $dayplans = "/tmp/dayplans";
@@ -170,6 +195,21 @@ sub timeblock {
 ";
 }
 
+sub historic_lines_block {
+    my ($month, $day) = @_;
+    my @historic_lines = this_day($month, $day);
+    # foreach my $line (@historic_lines) {
+    #     say $line;
+    # }
+    unshift @historic_lines, "\n## On this day in history....\n";
+    if (scalar @historic_lines == 0) {
+        push @historic_lines, "There are no historic logs for today...\n";
+        return @historic_lines;
+    } else {
+        return @historic_lines;
+    }
+}
+
 sub generate_text {
     my ($quicknotes_ref, $qfiles_ref) = get_quicknotes_and_quickfiles();
     return
@@ -181,7 +221,8 @@ sub generate_text {
         qnoteblock($quicknotes_ref, $qfiles_ref),
         remindersblock($year, $month, $day),
         schoolblock($day),
-        timeblock;
+        timeblock,
+        historic_lines_block($month, $day);
 }
 
 
