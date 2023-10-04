@@ -3,7 +3,7 @@
 use warnings;
 use strict;
 
-my $journal = "/home/lemon/Notes/journal";
+my $journal = "/home/lemon/Documents/Notes/journal";
 
 my $line = `grep -R $ARGV[0] $journal | cut -f3- -d' '| fzf `;
 chomp $line;
