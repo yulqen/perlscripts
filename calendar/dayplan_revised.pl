@@ -5,6 +5,32 @@ use strict;
 use warnings;
 use DateTime;
 use JSON;
+use Archive::Tar;
+use IO::Zlib;
+
+sub search_in_tgz {
+    my ($archive_file, $search_string) = @_;
+    my $tar = Archive::Tar->new;
+    $tar->read($archive_file);
+    # Iterate through the files in the archive in memory
+    foreach my $file ($tar->get_files) {
+        # Check if the file matches your filter (e.g., .txt extension)
+        if ($file->name =~ /\.md$/) {
+            # Get the content of the file and process it as needed
+            my $file_content = $file->get_content;
+            
+            # Perform your desired operations on $file_content
+            # For example, you can print it or manipulate it here
+            
+            my @lines = split(/\n/, $file_content);	
+            foreach my $line (@lines) {
+                if ($line =~ /$search_string/) {
+                    print "File name: " . $file->name . ": " . $line . "\n";
+                }
+            }
+        }
+    }
+}
 
 my $dayplans = '/home/lemon/Documents/Notes/journal/day_plans';
 #my $dayplans = "/tmp/dayplans";
