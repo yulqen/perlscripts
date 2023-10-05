@@ -38,12 +38,13 @@ sub search_in_tgz {
 
 sub this_day {
     my ($month, $day) = @_;
+    $day = "0$day" if $day < 10;
     my @out;
     my $archive_path = "/home/lemon/Documents/Notes/journal/archives/journal_archive_aug23.tgz";
     my $tar = Archive::Tar->new;
     $tar->read($archive_path);
     foreach my $file ($tar->get_files) {
-        if ($file->name =~ /\d\d\d\d-$month-$day.md/) {
+        if ($file->name =~ /\d\d\d\d-$month-$day\.md/) {
             my @lines = split(/\n/, $file->get_content);
             foreach my $line (@lines) {
                 if ($line =~ /^- \d\d:\d\d/) {
