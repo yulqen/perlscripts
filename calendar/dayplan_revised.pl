@@ -116,6 +116,18 @@ sub headerblock {
 ";
 }
 
+sub gcal_block {
+    my @output;
+    push @output, "\n## Google Calendar:\n";
+    my $caldata= `/home/lemon/src/virtualenvs/khal-venv/bin/khal list`;
+    my @lines = split(/\n/, $caldata);	
+    foreach my $l (@lines) {
+        my $s = sprintf("%s\n", $l);
+        push @output, $s;
+    }
+    return @output;
+}
+
 sub qnoteblock {
     $" = "";
     my $quicknotes_ref =shift;
@@ -221,8 +233,9 @@ sub generate_text {
         twblock($year, $month, $day, "h", "due"),
         qnoteblock($quicknotes_ref, $qfiles_ref),
         remindersblock($year, $month, $day),
-        schoolblock($day),
-        timeblock,
+        gcal_block,
+        # schoolblock($day),
+        # timeblock,
         historic_lines_block($month, $day);
 }
 
