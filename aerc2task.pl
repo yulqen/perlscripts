@@ -1,4 +1,4 @@
-#!/bin/env perl
+#!/usr/bin/env perl
 
 # this script is used to pipe an email from aerc using pipe -m ./aerc2task.pl to taskwarrior
 
@@ -11,7 +11,7 @@ foreach my $line (<STDIN>) {
         $task =~ s/TASK//g;
         $task =~ s/WATCH//g;
         print "So task is: $task\n";
-        `task add $task`
+        system("task add $task") == 0 or die "Calling taskwarrrior failed: $?";
     }
 }
 
