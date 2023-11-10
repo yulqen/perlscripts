@@ -182,7 +182,7 @@ sub twblock {
 
 sub remindersblock {
     my ($y, $m, $d) = @_;
-    my $reminders = qx(ssh -t bobbins remind ~/.reminders $y-$m-$d);
+    my $reminders = qx(ssh -t joannalemon.com remind ~/.reminders $y-$m-$d);
     $reminders =~ s/\s{2,}/\n/gs;
     $reminders =~ s/^Reminders.+\:\n//;
     my @rems = split /\n/, $reminders;
