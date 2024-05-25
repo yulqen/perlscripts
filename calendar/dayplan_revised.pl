@@ -5,6 +5,58 @@ use strict;
 use warnings;
 use DateTime;
 use JSON;
+use Archive::Tar;
+use IO::Zlib;
+use feature qw(say);
+
+sub search_in_tgz {
+    my ($archive_file, $search_string) = @_;
+    my $tar = Archive::Tar->new;
+    my @out;
+    $tar->read($archive_file);
+    # Iterate through the files in the archive in memory
+    foreach my $file ($tar->get_files) {
+        # Check if the file matches your filter (e.g., .txt extension)
+        if ($file->name =~ /\.md$/) {
+            # Get the content of the file and process it as needed
+            my $file_content = $file->get_content;
+            
+            # Perform your desired operations on $file_content
+            # For example, you can print it or manipulate it here
+            
+            my @lines = split(/\n/, $file_content);	
+            foreach my $line (@lines) {
+                if ($line =~ /$search_string/) {
+                    # print "File name: " . $file->name . ": " . $line . "\n";
+                    push(@out, $line);
+                }
+            }
+        }
+    }
+    return @out;
+}
+
+sub this_day {
+    my ($month, $day) = @_;
+    $day = "0$day" if $day < 10;
+    my @out;
+    my $archive_path = "/home/lemon/Documents/Notes/journal/archives/journal_archive_aug23.tgz";
+    my $tar = Archive::Tar->new;
+    $tar->read($archive_path);
+    foreach my $file ($tar->get_files) {
+        if ($file->name =~ /\d\d\d\d-$month-$day\.md/) {
+            my @lines = split(/\n/, $file->get_content);
+            foreach my $line (@lines) {
+                if ($line =~ /^- \d\d:\d\d/) {
+                    my $stripped = $file->name =~ s/\.md//r;
+                    push @out, $stripped . " " . $line . "\n";
+                }
+            }
+        }
+    }
+    return @out;
+}
+
 
 my $dayplans = '/home/lemon/Documents/Notes/journal/day_plans';
 #my $dayplans = "/tmp/dayplans";
@@ -64,6 +116,18 @@ sub headerblock {
 ";
 }
 
+sub gcal_block {
+    my @output;
+    push @output, "\n## Google Calendar:\n";
+    my $caldata= `/home/lemon/src/virtualenvs/khal-venv/bin/khal list`;
+    my @lines = split(/\n/, $caldata);	
+    foreach my $l (@lines) {
+        my $s = sprintf("%s\n", $l);
+        push @output, $s;
+    }
+    return @output;
+}
+
 sub qnoteblock {
     $" = "";
     my $quicknotes_ref =shift;
@@ -87,9 +151,9 @@ sub schoolblock {
     } else
     {
         return "
-08:15 - 08:20 - Harvey to school
-08:45 - 09:00 - Sophie to school 
-09:15 - 09:30 - Email ";
+08:20 - Harvey to school
+08:40 - Sophie to school 
+09:00 - 09:00 - Misc ";
     }
 }
 
@@ -118,7 +182,7 @@ sub twblock {
 
 sub remindersblock {
     my ($y, $m, $d) = @_;
-    my $reminders = qx(ssh bobbins remind ~/.reminders $y-$m-$d);
+    my $reminders = qx(ssh -t joannalemon.com remind ~/.reminders $y-$m-$d);
     $reminders =~ s/\s{2,}/\n/gs;
     $reminders =~ s/^Reminders.+\:\n//;
     my @rems = split /\n/, $reminders;
@@ -144,6 +208,21 @@ sub timeblock {
 ";
 }
 
+sub historic_lines_block {
+    my ($month, $day) = @_;
+    my @historic_lines = this_day($month, $day);
+    # foreach my $line (@historic_lines) {
+    #     say $line;
+    # }
+    unshift @historic_lines, "\n## On this day in history....\n";
+    if (scalar @historic_lines == 0) {
+        push @historic_lines, "There are no historic logs for today...\n";
+        return @historic_lines;
+    } else {
+        return @historic_lines;
+    }
+}
+
 sub generate_text {
     my ($quicknotes_ref, $qfiles_ref) = get_quicknotes_and_quickfiles();
     return
@@ -154,8 +233,10 @@ sub generate_text {
         twblock($year, $month, $day, "h", "due"),
         qnoteblock($quicknotes_ref, $qfiles_ref),
         remindersblock($year, $month, $day),
-        schoolblock($day),
-        timeblock;
+        gcal_block,
+        # schoolblock($day),
+        # timeblock,
+        historic_lines_block($month, $day);
 }
 
 
