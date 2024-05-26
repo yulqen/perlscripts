@@ -1,4 +1,4 @@
-#!/usr/bin/env -S perl
+#!/usr/bin/env -S perl -w
 
 use 5.010;
 use warnings;
@@ -62,7 +62,7 @@ close($FH);
 chdir "/home/lemon/code/html/yulqen.org";
 say getcwd();
 # my @gitstatuscmd = ("git", "status");
-my @gitaddcmd = ("git add -u");
+my @gitaddcmd = ("git add -A");
 my @gitcommitcmd = ("git commit -m 'update'");
 my @gitpushcmd = ("git push");
 my @pushcmd = ("make push");
