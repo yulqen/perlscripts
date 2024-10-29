@@ -21,7 +21,7 @@ sub get_quicknotes {
     my @quicknotes;
     open my $fh, "<", $quicknote_file or die "Cannot open quicknote.md file";
     while (<$fh>) {
-        if ($_ =~ /^- (.*)$/) {
+        if ($_ =~ /^- (.*)$/ || $_ =~ /(\[.*)$/) {
             push @quicknotes => "- $1\n";
         }
     }
@@ -66,10 +66,10 @@ my @gitaddcmd = ("git add -A");
 my @gitcommitcmd = ("git commit -m 'update'");
 my @gitpushcmd = ("git push");
 my @pushcmd = ("make push");
+# system(@gitaddcmd) or die "Cannot do git add $?";
+# system(@gitcommitcmd) or die "Cannot do git commit: $?";
 system(@pushcmd) or die "Cannot push the file to the remote: $?";
-system(@gitaddcmd) or die "Cannot do git add $?";
-system(@gitcommitcmd) or die "Cannot do git commit: $?";
-system(@gitpushcmd) or die "Cannot do git push: $?";
+# system(@gitpushcmd) or die "Cannot do git push: $?";
 
 say "Done!";
 
